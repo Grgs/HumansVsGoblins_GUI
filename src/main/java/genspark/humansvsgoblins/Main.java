@@ -1,4 +1,4 @@
-package humansvsgoblins;
+package genspark.humansvsgoblins;
 
 import java.io.FileReader;
 import java.io.IOException;

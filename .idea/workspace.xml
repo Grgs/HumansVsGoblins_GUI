@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="Starting template">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="imported text game">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Goblin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Goblin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Human.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Land.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Land.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Loot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Loot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/MaxCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/MaxCoordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Tile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,13 +35,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.Main">
+}</component>
+  <component name="RunManager" selected="Application.humansvsgoblins.Main">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="genspark.humansvsgoblins_gui.HelloApplication" />
       <module name="HumansVsGoblins_GUI" />
@@ -44,8 +55,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="humansvsgoblins.Main" />
+    <configuration name="humansvsgoblins.Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="genspark.humansvsgoblins.Main" />
       <module name="HumansVsGoblins_GUI" />
       <extension name="coverage">
         <pattern>
@@ -57,9 +68,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.humansvsgoblins.Main" />
+      <item itemvalue="Application.HelloApplication" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.humansvsgoblins.Main" />
         <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>

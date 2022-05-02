@@ -1,4 +1,4 @@
-package humansvsgoblins;
+package genspark.humansvsgoblins;
 
 public class Piece {
     /*Piece represents a piece that can be added to Land. This can be playable or non-playable

@@ -1,4 +1,4 @@
-package humansvsgoblins;
+package genspark.humansvsgoblins;
 
 public class Coordinates {
     int maxY;

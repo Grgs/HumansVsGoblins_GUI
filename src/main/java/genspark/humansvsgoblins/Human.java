@@ -1,4 +1,4 @@
-package humansvsgoblins;
+package genspark.humansvsgoblins;
 
 import java.util.ArrayList;
 import java.util.List;

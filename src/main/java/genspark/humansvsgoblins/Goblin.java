@@ -1,4 +1,4 @@
-package humansvsgoblins;
+package genspark.humansvsgoblins;
 
 import java.util.Random;
 
