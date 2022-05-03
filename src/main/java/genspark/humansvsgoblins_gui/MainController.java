@@ -2,19 +2,15 @@ package genspark.humansvsgoblins_gui;
 
 import genspark.humansvsgoblins.*;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 
+import java.net.URL;
 import java.util.*;
 
-public class MainController {
-//    @FXML
-//    private Label welcomeText;
-//
-//    @FXML
-//    protected void onHelloButtonClick() {
-//        welcomeText.setText("Welcome to JavaFX Application!");
-//    }
+public class MainController implements Initializable {
 
-    public static void mainGame() {
+    @FXML
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         Properties properties = Main.getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
@@ -80,10 +76,5 @@ public class MainController {
 
             Main.printEndGameMessage(gameState);
         }
-    }
-
-    @FXML
-    public void initialize() {
-        mainGame();
     }
 }

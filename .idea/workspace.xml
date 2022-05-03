@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="moved main to controller">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="inlined main method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1651605760752</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="text game runs before showing window">
+      <created>1651610525467</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651610525467</updated>
+    </task>
+    <task id="LOCAL-00006" summary="inlined main method">
+      <created>1651611614298</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651611614298</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,6 +147,8 @@
     <MESSAGE value="changed package location" />
     <MESSAGE value="renaming controller and main class" />
     <MESSAGE value="moved main to controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved main to controller" />
+    <MESSAGE value="text game runs before showing window" />
+    <MESSAGE value="inlined main method" />
+    <option name="LAST_COMMIT_MESSAGE" value="inlined main method" />
   </component>
 </project>
