@@ -2,7 +2,7 @@ package genspark.humansvsgoblins;
 
 public class Tile {
 
-    Piece piece;
+    public Piece piece;
 
     public Tile() {
         piece = null;
