@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="imported text game">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="changed package location">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Goblin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Goblin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Human.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Land.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Land.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Loot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Loot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/MaxCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/MaxCoordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/humansvsgoblins/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,15 +31,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.humansvsgoblins.Main">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="genspark.humansvsgoblins_gui.HelloApplication" />
+}]]></component>
+  <component name="RunManager" selected="Application.HumansVsGoblinsGUI">
+    <configuration name="HumansVsGoblinsGUI" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="genspark.humansvsgoblins_gui.HumansVsGoblins" />
       <module name="HumansVsGoblins_GUI" />
       <extension name="coverage">
         <pattern>
@@ -69,13 +66,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.HumansVsGoblinsGUI" />
       <item itemvalue="Application.humansvsgoblins.Main" />
-      <item itemvalue="Application.HelloApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HumansVsGoblinsGUI" />
         <item itemvalue="Application.humansvsgoblins.Main" />
-        <item itemvalue="Application.HelloApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -95,7 +92,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651516402657</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="changed package location">
+      <created>1651525828867</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1651525828867</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +115,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Starting template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting template" />
+    <MESSAGE value="changed package location" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed package location" />
   </component>
 </project>
