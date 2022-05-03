@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="renaming controller and main class">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="moved main to controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651604092993</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="moved main to controller">
+      <created>1651605760752</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1651605760752</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,6 +135,7 @@
     <MESSAGE value="Starting template" />
     <MESSAGE value="changed package location" />
     <MESSAGE value="renaming controller and main class" />
-    <option name="LAST_COMMIT_MESSAGE" value="renaming controller and main class" />
+    <MESSAGE value="moved main to controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved main to controller" />
   </component>
 </project>

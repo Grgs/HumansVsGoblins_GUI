@@ -4,14 +4,21 @@ import genspark.humansvsgoblins_gui.MainController;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.Properties;
 
 public class Main {
-    public static Properties getProperties() throws IOException {
-        FileReader fileReader = new FileReader("game.properties");
-        Properties properties = new Properties();
-        properties.load(fileReader);
-        fileReader.close();
+    public static Properties getProperties() {
+        Properties properties = null;
+        try {
+            FileReader fileReader = new FileReader("game.properties");
+            properties = new Properties();
+            properties.load(fileReader);
+            fileReader.close();
+            return properties;
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            System.exit(1);
+        }
         return properties;
     }
 
@@ -49,7 +56,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         MainController.mainGame();
     }
 
