@@ -8,24 +8,32 @@ import java.net.URL;
 import java.util.*;
 
 public class MainController implements Initializable {
+    Properties properties;
+    int turnsLeft;
+    Land land;
+    Goblin goblin;
+    Human human;
+    Random random;
+    GameState gameState;
+    ArrayList<Piece> lootList;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Properties properties = Main.getProperties();
+        this.properties = Main.getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
-        int turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
+        this.turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
 
-        Land land = new Land();
-        Goblin goblin = new Goblin();
-        Human human = new Human();
+        this.land = new Land();
+        this.goblin = new Goblin();
+        this.human = new Human();
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
+        this.random = new Random();
 
         Main.initializePlayers(properties, goblin, human);
 
-        ArrayList<Piece> lootList = Loot.getLootList(random);
-        GameState gameState = GameState.PLAYING;
+        lootList = Loot.getLootList(random);
+        gameState = GameState.PLAYING;
 
         System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
         land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
@@ -36,7 +44,7 @@ public class MainController implements Initializable {
 
         while (gameState == GameState.PLAYING) {
             human.move(scanner);
-            goblin.move(human, turnsLeft);
+            goblin.move(human, this.turnsLeft);
             if (land.getGrid(human.getCoordinates()).piece != null) {
                 lootList = human.absorbLoot(lootList);
                 land.setGrid(human.getCoordinates(), null);
@@ -56,14 +64,14 @@ public class MainController implements Initializable {
                 goblin.moveEast();
             }
 
-            turnsLeft--;
-            gameState = Main.determineGameState(turnsLeft, goblin, human, gameState);
+            this.turnsLeft--;
+            gameState = Main.determineGameState(this.turnsLeft, goblin, human, gameState);
 
             System.out.printf("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
                     human.getHealth(), human.getAttack(), human.getDefence());
             System.out.printf("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin,
                     goblin.getHealth(), goblin.getAttack(), goblin.getDefence());
-            System.out.printf("%d turns left%n", turnsLeft);
+            System.out.printf("%d turns left%n", this.turnsLeft);
 
             if (gameState.equals(GameState.WON)) {
                 goblin.shape = "  ";
@@ -71,8 +79,8 @@ public class MainController implements Initializable {
                 human.shape = "  ";
             }
 
-            land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
-            System.out.println(land);
+            this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
+            System.out.println(this.land);
 
             Main.printEndGameMessage(gameState);
         }
