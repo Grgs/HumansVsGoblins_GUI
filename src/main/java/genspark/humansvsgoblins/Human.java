@@ -14,26 +14,30 @@ public class Human extends Player {
     }
 
     public void move(Scanner scanner) {
-        char key;
+        String key;
         try {
-            key = scanner.next().strip().toLowerCase(Locale.ROOT).charAt(0);
+            key = String.valueOf(scanner.next().strip().toLowerCase(Locale.ROOT).charAt(0));
         } catch (Exception e) {
-            key = 'n';
+            key = "n";
         }
+        this.move(key);
+    }
+
+    public void move(String key) {
         switch (key) {
-            case 'w':
+            case "w":
                 this.moveNorth();
                 break;
-            case 'a':
+            case "a":
                 this.moveWest();
                 break;
-            case 's':
+            case "s":
                 this.moveSouth();
                 break;
-            case 'd':
+            case "d":
                 this.moveEast();
                 break;
-            case 'q':
+            case "q":
                 System.out.println("Quitting!");
                 System.exit(0);
             default:

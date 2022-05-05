@@ -42,8 +42,12 @@ public class MainController implements Initializable {
         System.out.println("type 'q' to quit or\n" +
                 "type 'w', 'a', 's' or 'd' to move up, left, down or right \nthen press enter:");
 
+//        movePlayer(scanner);
+    }
+
+    public void movePlayer(String key) {
         while (gameState == GameState.PLAYING) {
-            human.move(scanner);
+            human.move(key);
             goblin.move(human, this.turnsLeft);
             if (land.getGrid(human.getCoordinates()).piece != null) {
                 lootList = human.absorbLoot(lootList);

@@ -3,6 +3,7 @@ package genspark.humansvsgoblins_gui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class HumansVsGoblins extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HumansVsGoblins.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Humans Vs. Goblins");
+        scene.setOnKeyPressed((KeyEvent key) -> System.out.println(key.getCode().toString()));
         stage.setScene(scene);
         stage.show();
     }
