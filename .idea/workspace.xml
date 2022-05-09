@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="removed dependant variables from game loop">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="moved game loop">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Human.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" afterDir="false" />
     </list>
@@ -145,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651621157287</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="moved game loop">
+      <created>1651717705232</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1651717705232</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +173,7 @@
     <MESSAGE value="text game runs before showing window" />
     <MESSAGE value="inlined main method" />
     <MESSAGE value="removed dependant variables from game loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed dependant variables from game loop" />
+    <MESSAGE value="moved game loop" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved game loop" />
   </component>
 </project>
