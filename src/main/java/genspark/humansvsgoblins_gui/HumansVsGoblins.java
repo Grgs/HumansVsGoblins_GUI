@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -19,12 +20,13 @@ public class HumansVsGoblins extends Application {
     Random random;
     GameState gameState;
     ArrayList<Piece> lootList;
+    Label[][] landNodes = null;
 
     public static void main(String[] args) {
         launch();
     }
 
-    public void movePlayer(String key) {
+    public void movePlayer(String key, Label[][] landNodes) {
         key = key.toLowerCase(Locale.ROOT);
         human.move(key);
         goblin.move(human, this.turnsLeft);
@@ -63,6 +65,12 @@ public class HumansVsGoblins extends Application {
         }
 
         this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
+        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
+            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
+                Tile tile = land.getGrid(new Coordinates(i, j));
+                landNodes[j][i].setText(tile.toString());
+            }
+        }
         System.out.println(this.land);
 
         Main.printEndGameMessage(gameState);
@@ -81,7 +89,6 @@ public class HumansVsGoblins extends Application {
         this.land = new Land();
         this.goblin = new Goblin();
         this.human = new Human();
-//        Scanner scanner = new Scanner(System.in);
         this.random = new Random();
 
         Main.initializePlayers(properties, goblin, human);
@@ -97,17 +104,25 @@ public class HumansVsGoblins extends Application {
         System.out.println("type 'q' to quit or\n" +
                 "type 'w', 'a', 's' or 'd' to move up, left, down or right \nthen press enter:");
 
-        Label label = new Label("X");
         GridPane gridPane = new GridPane();
         gridPane.setGridLinesVisible(true);
-        gridPane.add(label, 0, 0);
+        landNodes = new Label[MaxCoordinates.maxRows][MaxCoordinates.maxCols];
+        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
+            gridPane.getColumnConstraints().add(new ColumnConstraints(20));
+            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
+                Tile tile = land.getGrid(new Coordinates(i, j));
+                landNodes[j][i] = new Label(tile.toString());
+                gridPane.add(landNodes[j][i], i, j);
+            }
+        }
+
         stage.setTitle("Humans Vs. Goblins");
         Scene scene = new Scene(gridPane, 600, 400);
 
         scene.setOnKeyPressed((KeyEvent key) -> {
             System.out.println(key.getCode().toString());
             if (gameState == GameState.PLAYING)
-                movePlayer(key.getCode().toString());
+                movePlayer(key.getCode().toString(), landNodes);
         });
         stage.setScene(scene);
         stage.show();

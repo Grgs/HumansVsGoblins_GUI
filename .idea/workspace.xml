@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="moved game logic to HumansVsGoblins">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="game playable but not on window">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
     </list>
@@ -157,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652122263317</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="game playable but not on window">
+      <created>1652125009662</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1652125009662</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,6 +189,7 @@
     <MESSAGE value="removed dependant variables from game loop" />
     <MESSAGE value="moved game loop" />
     <MESSAGE value="moved game logic to HumansVsGoblins" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved game logic to HumansVsGoblins" />
+    <MESSAGE value="game playable but not on window" />
+    <option name="LAST_COMMIT_MESSAGE" value="game playable but not on window" />
   </component>
 </project>
