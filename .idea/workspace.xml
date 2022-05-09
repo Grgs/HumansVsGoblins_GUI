@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="moved text to window">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" afterDir="false" />
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="added status text to window">
+      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/Human.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652138346450</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added status text to window">
+      <created>1652139730663</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1652139730663</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,6 +204,7 @@
     <MESSAGE value="game playable but not on window" />
     <MESSAGE value="gitignore" />
     <MESSAGE value="moved text to window" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved text to window" />
+    <MESSAGE value="added status text to window" />
+    <option name="LAST_COMMIT_MESSAGE" value="added status text to window" />
   </component>
 </project>

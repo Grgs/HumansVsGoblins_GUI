@@ -26,15 +26,19 @@ public class Human extends Player {
     public void move(String key) {
         switch (key) {
             case "w":
+            case "up":
                 this.moveNorth();
                 break;
             case "a":
+            case "left":
                 this.moveWest();
                 break;
             case "s":
+            case "down":
                 this.moveSouth();
                 break;
             case "d":
+            case "right":
                 this.moveEast();
                 break;
             case "q":
