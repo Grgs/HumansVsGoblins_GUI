@@ -1,11 +1,10 @@
 package genspark.humansvsgoblins_gui;
 
-import genspark.humansvsgoblins.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 

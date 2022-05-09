@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="moved game loop">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="moved game logic to HumansVsGoblins">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651717705232</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="moved game logic to HumansVsGoblins">
+      <created>1652122263317</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1652122263317</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,6 +180,7 @@
     <MESSAGE value="inlined main method" />
     <MESSAGE value="removed dependant variables from game loop" />
     <MESSAGE value="moved game loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved game loop" />
+    <MESSAGE value="moved game logic to HumansVsGoblins" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved game logic to HumansVsGoblins" />
   </component>
 </project>
