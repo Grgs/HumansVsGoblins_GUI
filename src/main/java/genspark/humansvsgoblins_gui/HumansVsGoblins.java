@@ -2,6 +2,7 @@ package genspark.humansvsgoblins_gui;
 
 import genspark.humansvsgoblins.*;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -9,6 +10,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.*;
 
 public class HumansVsGoblins extends Application {
@@ -77,10 +79,8 @@ public class HumansVsGoblins extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException {
 //        movePlayer(scanner);
-//        FXMLLoader fxmlLoader = new FXMLLoader(HumansVsGoblins.class.getResource("main-view.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         this.properties = Main.getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
@@ -96,15 +96,17 @@ public class HumansVsGoblins extends Application {
         lootList = Loot.getLootList(random);
         gameState = GameState.PLAYING;
 
-        System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
-        land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
+        FXMLLoader fxmlLoader = new FXMLLoader(HumansVsGoblins.class.getResource("main-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
 
+        System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
+        Label topLabel = (Label) scene.lookup("#topLabel");
+        topLabel.setText(String.format("Human\tVs\tGoblin%n%s\t\tVs\t%s%n type 'q' to quit or%n" +
+                "type 'w', 'a', 's' or 'd' to move up, left, down or right:%n", human, goblin));
+        land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
         System.out.println(land);
 
-        System.out.println("type 'q' to quit or\n" +
-                "type 'w', 'a', 's' or 'd' to move up, left, down or right \nthen press enter:");
-
-        GridPane gridPane = new GridPane();
+        GridPane gridPane = (GridPane) scene.lookup("#landGrid");
         gridPane.setGridLinesVisible(true);
         landNodes = new Label[MaxCoordinates.maxRows][MaxCoordinates.maxCols];
         for (int i = 0; i < MaxCoordinates.maxCols; i++) {
@@ -117,7 +119,6 @@ public class HumansVsGoblins extends Application {
         }
 
         stage.setTitle("Humans Vs. Goblins");
-        Scene scene = new Scene(gridPane, 600, 400);
 
         scene.setOnKeyPressed((KeyEvent key) -> {
             System.out.println(key.getCode().toString());

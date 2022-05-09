@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="game playable but not on window">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/genspark/humansvsgoblins_gui/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +190,7 @@
     <MESSAGE value="moved game loop" />
     <MESSAGE value="moved game logic to HumansVsGoblins" />
     <MESSAGE value="game playable but not on window" />
-    <option name="LAST_COMMIT_MESSAGE" value="game playable but not on window" />
+    <MESSAGE value="gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
   </component>
 </project>
