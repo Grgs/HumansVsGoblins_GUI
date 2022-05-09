@@ -23,6 +23,7 @@ public class HumansVsGoblins extends Application {
     GameState gameState;
     ArrayList<Piece> lootList;
     Label[][] landNodes = null;
+    String statusText = "";
 
     public static void main(String[] args) {
         launch();
@@ -54,11 +55,12 @@ public class HumansVsGoblins extends Application {
         this.turnsLeft--;
         gameState = Main.determineGameState(this.turnsLeft, goblin, human, gameState);
 
-        System.out.printf("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
+        statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
                 human.getHealth(), human.getAttack(), human.getDefence());
-        System.out.printf("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin,
+        statusText += String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin,
                 goblin.getHealth(), goblin.getAttack(), goblin.getDefence());
-        System.out.printf("%d turns left%n", this.turnsLeft);
+        statusText += String.format("%d turns left%n", this.turnsLeft);
+        System.out.println(statusText);
 
         if (gameState.equals(GameState.WON)) {
             goblin.shape = "  ";
@@ -75,7 +77,8 @@ public class HumansVsGoblins extends Application {
         }
         System.out.println(this.land);
 
-        Main.printEndGameMessage(gameState);
+        System.out.println(Main.printEndGameMessage(gameState));
+        statusText += Main.printEndGameMessage(gameState);
     }
 
     @Override
@@ -101,6 +104,7 @@ public class HumansVsGoblins extends Application {
 
         System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
         Label topLabel = (Label) scene.lookup("#topLabel");
+        Label bottomLabel = (Label) scene.lookup("#bottomLabel");
         topLabel.setText(String.format("Human\tVs\tGoblin%n%s\t\tVs\t%s%n type 'q' to quit or%n" +
                 "type 'w', 'a', 's' or 'd' to move up, left, down or right:%n", human, goblin));
         land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
@@ -124,6 +128,7 @@ public class HumansVsGoblins extends Application {
             System.out.println(key.getCode().toString());
             if (gameState == GameState.PLAYING)
                 movePlayer(key.getCode().toString(), landNodes);
+            bottomLabel.setText(statusText);
         });
         stage.setScene(scene);
         stage.show();

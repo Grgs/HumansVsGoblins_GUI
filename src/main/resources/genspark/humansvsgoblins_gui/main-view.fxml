@@ -7,4 +7,5 @@
       xmlns:fx="http://javafx.com/fxml/1">
     <Label fx:id="topLabel" text="Humans Vs Goblins" wrapText="true"/>
     <GridPane fx:id="landGrid" alignment="CENTER"/>
+    <Label fx:id="bottomLabel" text="Humans Vs Goblins" wrapText="true"/>
 </VBox>

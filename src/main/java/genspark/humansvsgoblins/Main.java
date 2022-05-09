@@ -39,18 +39,16 @@ public class Main {
         return gameState;
     }
 
-    public static void printEndGameMessage(GameState gameState) {
+    public static String printEndGameMessage(GameState gameState) {
         switch (gameState) {
             case WON:
-                System.out.println("You won!");
-                break;
+                return ("You won!");
             case LOST:
-                System.out.println("You lost!");
-                break;
+                return  ("You lost!");
             case DRAW:
-                System.out.println("You survived!");
-                break;
+                return ("You survived!");
         }
+        return "";
     }
 
     public static void main(String[] args) {
@@ -117,7 +115,7 @@ public class Main {
             land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
             System.out.println(land);
 
-            printEndGameMessage(gameState);
+            System.out.println(printEndGameMessage(gameState));
         }
     }
 
