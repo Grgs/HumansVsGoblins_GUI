@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" xmlns="http://javafx.com/javafx/16"
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="topLabel" text="Humans Vs Goblins" wrapText="true"/>
-    <GridPane fx:id="landGrid" alignment="CENTER"/>
-    <Label fx:id="bottomLabel" text="Humans Vs Goblins" wrapText="true"/>
+    <children>
+        <Label fx:id="topLabel" text="Humans Vs Goblins" wrapText="true"/>
+        <GridPane fx:id="landGrid" alignment="CENTER"/>
+        <Label fx:id="bottomLabel" text="Humans Vs Goblins" wrapText="true"/>
+    </children>
 </VBox>

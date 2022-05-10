@@ -3,6 +3,7 @@ package genspark.humansvsgoblins_gui;
 import genspark.humansvsgoblins.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
@@ -27,6 +28,22 @@ public class HumansVsGoblins extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void drawLandInitial(GridPane gridPane) {
+        landNodes = new Label[MaxCoordinates.maxRows][MaxCoordinates.maxCols];
+        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
+            gridPane.getColumnConstraints().add(new ColumnConstraints(20));
+            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
+                Tile tile = land.getGrid(new Coordinates(i, j));
+                Label l = new Label(tile.toString());
+                l.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID,
+                        new CornerRadii(3.0), new BorderWidths(0.5))));
+                l.setAlignment(Pos.CENTER);
+                landNodes[j][i] = l;
+                gridPane.add(landNodes[j][i], i, j);
+            }
+        }
     }
 
     private void drawLand(Label[][] landNodes) {
@@ -81,8 +98,8 @@ public class HumansVsGoblins extends Application {
         drawLand(landNodes);
         System.out.println(this.land);
 
-        System.out.println(Main.printEndGameMessage(gameState));
-        statusText += Main.printEndGameMessage(gameState);
+        System.out.println(Main.getEndGameMessage(gameState));
+        statusText += Main.getEndGameMessage(gameState);
     }
 
     @Override
@@ -113,26 +130,15 @@ public class HumansVsGoblins extends Application {
         System.out.println(land);
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
-        landNodes = new Label[MaxCoordinates.maxRows][MaxCoordinates.maxCols];
-        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
-            gridPane.getColumnConstraints().add(new ColumnConstraints(20));
-            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
-                Tile tile = land.getGrid(new Coordinates(i, j));
-                Label l = new Label(tile.toString());
-                l.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID,
-                        new CornerRadii(3.0), new BorderWidths(0.5))));
-                landNodes[j][i] = l;
-                gridPane.add(landNodes[j][i], i, j);
-            }
-        }
-
+        drawLandInitial(gridPane);
         stage.setTitle("Humans Vs. Goblins");
 
         scene.setOnKeyPressed((KeyEvent key) -> {
-            System.out.println(key.getCode().toString());
             if (gameState == GameState.PLAYING)
                 movePlayer(key.getCode().toString(), landNodes);
             bottomLabel.setText(statusText);
+            if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
+                System.exit(0);
         });
         stage.setScene(scene);
         stage.show();
