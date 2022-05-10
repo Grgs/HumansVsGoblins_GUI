@@ -119,8 +119,8 @@ public class HumansVsGoblins extends Application {
             for (int j = 0; j < MaxCoordinates.maxRows; j++) {
                 Tile tile = land.getGrid(new Coordinates(i, j));
                 Label l = new Label(tile.toString());
-                l.setBorder(new Border(new BorderStroke(Color.BLACK,
-                        BorderStrokeStyle.SOLID, new CornerRadii(3.0), new BorderWidths(0.5))));
+                l.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID,
+                        new CornerRadii(3.0), new BorderWidths(0.5))));
                 landNodes[j][i] = l;
                 gridPane.add(landNodes[j][i], i, j);
             }

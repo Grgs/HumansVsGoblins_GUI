@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="added arrow control">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.properties" beforeDir="false" afterPath="$PROJECT_DIR$/game.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/MaxCoordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins/MaxCoordinates.java" afterDir="false" />
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="adjusted border">
       <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/MainController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652140116302</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="adjusted border">
+      <created>1652142422089</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1652142422089</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -217,6 +220,7 @@
     <MESSAGE value="moved text to window" />
     <MESSAGE value="added status text to window" />
     <MESSAGE value="added arrow control" />
-    <option name="LAST_COMMIT_MESSAGE" value="added arrow control" />
+    <MESSAGE value="adjusted border" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjusted border" />
   </component>
 </project>
