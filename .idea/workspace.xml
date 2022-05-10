@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="added quit option">
+    <list default="true" id="2f3f4699-f98e-422a-8978-9ab3ffbe1c10" name="Changes" comment="added exception handling to xml file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/genspark/humansvsgoblins_gui/HumansVsGoblins.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.properties" beforeDir="false" afterPath="$PROJECT_DIR$/game.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652151753060</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="added exception handling to xml file">
+      <created>1652185773987</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1652185773987</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,6 +244,7 @@
     <MESSAGE value="added arrow control" />
     <MESSAGE value="adjusted border" />
     <MESSAGE value="added quit option" />
-    <option name="LAST_COMMIT_MESSAGE" value="added quit option" />
+    <MESSAGE value="added exception handling to xml file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added exception handling to xml file" />
   </component>
 </project>
