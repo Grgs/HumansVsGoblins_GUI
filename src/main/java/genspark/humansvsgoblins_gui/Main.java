@@ -11,9 +11,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.FileReader;
 import java.util.*;
 
-public class HumansVsGoblins extends Application {
+public class Main extends Application {
     Properties properties;
     int turnsLeft;
     Land land;
@@ -27,6 +28,53 @@ public class HumansVsGoblins extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private static Properties getProperties() {
+        Properties properties = null;
+        try {
+            FileReader fileReader = new FileReader("game.properties");
+            properties = new Properties();
+            properties.load(fileReader);
+            fileReader.close();
+            return properties;
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            System.exit(1);
+        }
+        return properties;
+    }
+
+    private static void initializePlayers(Properties properties, Goblin goblin, Human human) {
+        goblin.setCoordinates(0, 0);
+        goblin.setHealth(Integer.parseInt((String) properties.get("initialGoblinHealth")));
+        goblin.setAttack(Integer.parseInt((String) properties.get("initialGoblinAttack")));
+        human.setCoordinates(MaxCoordinates.maxCols / 2, MaxCoordinates.maxRows / 2);
+        human.setHealth(Integer.parseInt((String) properties.get("initialHumanHealth")));
+        human.setAttack(Integer.parseInt((String) properties.get("initialHumanAttack")));
+    }
+
+    private static GameState determineGameState(int turnsLeft, Goblin goblin, Human human, GameState gameState) {
+        if (human.getHealth() <= 0) {
+            gameState = GameState.LOST;
+        } else if (goblin.getHealth() <= 0) {
+            gameState = GameState.WON;
+        } else if (turnsLeft <= 0) {
+            gameState = GameState.DRAW;
+        }
+        return gameState;
+    }
+
+    private static String getEndGameMessage(GameState gameState) {
+        switch (gameState) {
+            case WON:
+                return ("You Won!");
+            case LOST:
+                return ("You Lost!");
+            case DRAW:
+                return ("You Survived!");
+        }
+        return "";
     }
 
     private void drawLandInitial(GridPane gridPane) {
@@ -78,7 +126,7 @@ public class HumansVsGoblins extends Application {
         }
 
         this.turnsLeft--;
-        gameState = Main.determineGameState(this.turnsLeft, goblin, human, gameState);
+        gameState = determineGameState(this.turnsLeft, goblin, human, gameState);
 
         statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
                 human.getHealth(), human.getAttack(), human.getDefence());
@@ -97,13 +145,13 @@ public class HumansVsGoblins extends Application {
         drawLand(landNodes);
         System.out.println(this.land);
 
-        System.out.println(Main.getEndGameMessage(gameState));
-        statusText += Main.getEndGameMessage(gameState);
+        System.out.println(getEndGameMessage(gameState));
+        statusText += getEndGameMessage(gameState);
     }
 
     @Override
     public void start(Stage stage) {
-        this.properties = Main.getProperties();
+        this.properties = getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
         this.turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
@@ -113,12 +161,12 @@ public class HumansVsGoblins extends Application {
         this.human = new Human();
         this.random = new Random();
 
-        Main.initializePlayers(properties, goblin, human);
+        initializePlayers(properties, goblin, human);
 
         lootList = Loot.getLootList(random);
         gameState = GameState.PLAYING;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HumansVsGoblins.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
         Scene scene = null;
         try{
             scene = new Scene(fxmlLoader.load(), 650, 550);
