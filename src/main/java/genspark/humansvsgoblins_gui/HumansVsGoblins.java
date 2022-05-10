@@ -11,7 +11,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.*;
 
 public class HumansVsGoblins extends Application {
@@ -103,9 +102,10 @@ public class HumansVsGoblins extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         this.properties = Main.getProperties();
-        MaxCoordinates.getProperties();
+        MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
+        MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
         this.turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
 
         this.land = new Land();
@@ -119,7 +119,13 @@ public class HumansVsGoblins extends Application {
         gameState = GameState.PLAYING;
 
         FXMLLoader fxmlLoader = new FXMLLoader(HumansVsGoblins.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 650, 550);
+        Scene scene = null;
+        try{
+            scene = new Scene(fxmlLoader.load(), 650, 550);
+        } catch (Exception e){
+            System.out.println("Could not open main-view.fxml\n" + e.getLocalizedMessage());
+            System.exit(1);
+        }
 
         System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
         Label topLabel = (Label) scene.lookup("#topLabel");
