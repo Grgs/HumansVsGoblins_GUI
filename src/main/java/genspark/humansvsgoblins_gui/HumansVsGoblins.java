@@ -6,8 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,6 +27,15 @@ public class HumansVsGoblins extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void drawLand(Label[][] landNodes) {
+        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
+            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
+                Tile tile = land.getGrid(new Coordinates(i, j));
+                landNodes[j][i].setText(tile.toString());
+            }
+        }
     }
 
     public void movePlayer(String key, Label[][] landNodes) {
@@ -69,12 +78,7 @@ public class HumansVsGoblins extends Application {
         }
 
         this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
-        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
-            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
-                Tile tile = land.getGrid(new Coordinates(i, j));
-                landNodes[j][i].setText(tile.toString());
-            }
-        }
+        drawLand(landNodes);
         System.out.println(this.land);
 
         System.out.println(Main.printEndGameMessage(gameState));
@@ -83,10 +87,8 @@ public class HumansVsGoblins extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-//        movePlayer(scanner);
         this.properties = Main.getProperties();
-        MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
-        MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
+        MaxCoordinates.getProperties();
         this.turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
 
         this.land = new Land();
@@ -100,7 +102,7 @@ public class HumansVsGoblins extends Application {
         gameState = GameState.PLAYING;
 
         FXMLLoader fxmlLoader = new FXMLLoader(HumansVsGoblins.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 650, 550);
 
         System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
         Label topLabel = (Label) scene.lookup("#topLabel");
@@ -111,13 +113,15 @@ public class HumansVsGoblins extends Application {
         System.out.println(land);
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
-        gridPane.setGridLinesVisible(true);
         landNodes = new Label[MaxCoordinates.maxRows][MaxCoordinates.maxCols];
         for (int i = 0; i < MaxCoordinates.maxCols; i++) {
             gridPane.getColumnConstraints().add(new ColumnConstraints(20));
             for (int j = 0; j < MaxCoordinates.maxRows; j++) {
                 Tile tile = land.getGrid(new Coordinates(i, j));
-                landNodes[j][i] = new Label(tile.toString());
+                Label l = new Label(tile.toString());
+                l.setBorder(new Border(new BorderStroke(Color.BLACK,
+                        BorderStrokeStyle.SOLID, new CornerRadii(3.0), new BorderWidths(0.5))));
+                landNodes[j][i] = l;
                 gridPane.add(landNodes[j][i], i, j);
             }
         }

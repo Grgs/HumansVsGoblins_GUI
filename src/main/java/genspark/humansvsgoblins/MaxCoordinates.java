@@ -8,7 +8,7 @@ public class MaxCoordinates {
     public static int maxRows;
     public static int maxCols;
 
-    public void getProperties() {
+    public static void getProperties() {
         try (FileReader fileReader = new FileReader("game.properties")) {
             Properties properties = new Properties();
             properties.load(fileReader);
