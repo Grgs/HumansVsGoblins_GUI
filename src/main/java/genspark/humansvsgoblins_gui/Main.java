@@ -144,7 +144,6 @@ public class Main extends Application {
         this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
         drawLand(landNodes);
         System.out.println(this.land);
-
         System.out.println(getEndGameMessage(gameState));
         statusText += getEndGameMessage(gameState);
     }
@@ -178,8 +177,9 @@ public class Main extends Application {
         System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
         Label topLabel = (Label) scene.lookup("#topLabel");
         Label bottomLabel = (Label) scene.lookup("#bottomLabel");
-        topLabel.setText(String.format("Human\tVs\tGoblin%n%s\t\tVs\t%s%n type 'q' to quit or%n" +
-                "type 'w', 'a', 's' or 'd' to move up, left, down or right:%n", human, goblin));
+        topLabel.setText(String.format("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin));
+        bottomLabel.setText("type 'q' to quit or%n\" +\n" +
+                "type 'w', 'a', 's' or 'd' to move up, left, down or right");
         land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
         System.out.println(land);
 
