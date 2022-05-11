@@ -4,10 +4,12 @@ import java.util.Properties;
 import java.util.Random;
 
 public class Goblin extends Player {
+    Random random;
 
     public Goblin(Coordinates coordinates) {
         super(coordinates);
         this.shape = "\uD83D\uDC7A"; //👺
+        this.random = new Random();
     }
 
     public Goblin(Coordinates coordinates, Properties properties) {
@@ -16,7 +18,7 @@ public class Goblin extends Player {
         this.attack = Integer.parseInt((String) properties.get("initialGoblinAttack"));
     }
 
-    public Human combat(Human human, Random random, float randomness) {
+    public Human combat(Human human, float randomness) {
         System.out.println("combat");
         int oldHumanHealth = human.getHealth();
         int oldGoblinHealth = this.getHealth();

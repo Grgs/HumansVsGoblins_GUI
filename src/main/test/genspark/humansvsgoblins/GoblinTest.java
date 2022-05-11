@@ -37,11 +37,11 @@ class GoblinTest {
 
     @Test
     void combat() {
-        assertDoesNotThrow(() -> goblin.combat(human, random, 1.5F));
+        assertDoesNotThrow(() -> goblin.combat(human, 1.5F));
         goblin.setAttack(10);
         human.setAttack(10);
         int initialHumanHealth = human.getHealth();
-        human = goblin.combat(human, random, 0F);
+        human = goblin.combat(human, 0F);
         assertTrue(initialHumanHealth > human.getHealth());
     }
 
@@ -49,8 +49,6 @@ class GoblinTest {
     void move() {
         MaxCoordinates.maxCols = 100;
         MaxCoordinates.maxRows = 100;
-//        Goblin goblin = new Goblin();
-//        Human human = new Human();
         goblin.setCoordinates(3, 3);
         human.setCoordinates(90, 90);
         double initialDistance = Math.sqrt(Math.pow(goblin.getCoordinates().x - human.getCoordinates().x, 2) +

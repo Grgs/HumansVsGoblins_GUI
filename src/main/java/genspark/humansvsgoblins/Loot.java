@@ -11,7 +11,8 @@ public class Loot extends Piece {
         this.shape = " +";
     }
 
-    public static ArrayList<Piece> getLootList(Random random) {
+    public static ArrayList<Piece> getLootList() {
+        Random random = new Random();
         int numberOfLoot = Math.max(MaxCoordinates.maxCols, MaxCoordinates.maxRows);
         PrimitiveIterator.OfInt randRows = random.ints(numberOfLoot,
                 0, MaxCoordinates.maxRows).iterator();

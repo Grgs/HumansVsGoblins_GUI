@@ -25,8 +25,7 @@ class HumanTest {
     void absorbLoot() {
         MaxCoordinates.maxCols = 100;
         MaxCoordinates.maxRows = 100;
-        Random random = new Random();
-        ArrayList<Piece> lootList = Loot.getLootList(random);
+        ArrayList<Piece> lootList = Loot.getLootList();
         int originalLootListSize = lootList.size();
         human.setCoordinates(lootList.get(0).coordinates);
         lootList = human.absorbLoot(lootList);

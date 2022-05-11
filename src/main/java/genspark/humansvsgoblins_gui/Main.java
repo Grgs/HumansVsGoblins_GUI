@@ -18,7 +18,6 @@ public class Main extends Application {
     Properties properties;
     int turnsLeft;
     Land land;
-    Random random;
     GameState gameState;
     ArrayList<Piece> lootList;
     Label[][] landNodes = null;
@@ -100,7 +99,7 @@ public class Main extends Application {
             land.setGrid(human.getCoordinates(), null);
         }
         if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
-            human = goblin.combat(human, random, Float.parseFloat((String) properties.get("combatRandomness")));
+            human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
             Loot lootDrop = new Loot(new Coordinates(goblin.getCoordinates()));
             while (lootDrop.getCoordinates().equals(human.getCoordinates()) ||
                     lootDrop.getCoordinates().equals(goblin.getCoordinates())) {
@@ -148,9 +147,8 @@ public class Main extends Application {
         Goblin goblin = new Goblin(new Coordinates(0, 0), properties);
         Human human = new Human(new Coordinates(MaxCoordinates.maxCols / 2,
                 MaxCoordinates.maxRows / 2), properties);
-        this.random = new Random();
 
-        lootList = Loot.getLootList(random);
+        lootList = Loot.getLootList();
         gameState = GameState.PLAYING;
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
