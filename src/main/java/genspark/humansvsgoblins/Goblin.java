@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Goblin extends Player {
 
-    public Goblin() {
-        super();
+    public Goblin(Coordinates coordinates) {
+        super(coordinates);
         this.shape = "\uD83D\uDC7A"; //👺
     }
 

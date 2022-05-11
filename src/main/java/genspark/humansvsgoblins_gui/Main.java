@@ -45,16 +45,14 @@ public class Main extends Application {
         return properties;
     }
 
-    private static void initializePlayers(Properties properties, Goblin goblin, Human human) {
-        goblin.setCoordinates(0, 0);
+    public void initializePlayers(Properties properties) {
         goblin.setHealth(Integer.parseInt((String) properties.get("initialGoblinHealth")));
         goblin.setAttack(Integer.parseInt((String) properties.get("initialGoblinAttack")));
-        human.setCoordinates(MaxCoordinates.maxCols / 2, MaxCoordinates.maxRows / 2);
         human.setHealth(Integer.parseInt((String) properties.get("initialHumanHealth")));
         human.setAttack(Integer.parseInt((String) properties.get("initialHumanAttack")));
     }
 
-    private static GameState determineGameState(int turnsLeft, Goblin goblin, Human human, GameState gameState) {
+    public static GameState determineGameState(int turnsLeft, Goblin goblin, Human human, GameState gameState) {
         if (human.getHealth() <= 0) {
             gameState = GameState.LOST;
         } else if (goblin.getHealth() <= 0) {
@@ -77,7 +75,7 @@ public class Main extends Application {
         return "";
     }
 
-    private void drawLandInitial(GridPane gridPane) {
+    public void drawLandInitial(GridPane gridPane) {
         landNodes = new Label[MaxCoordinates.maxRows][MaxCoordinates.maxCols];
         for (int i = 0; i < MaxCoordinates.maxCols; i++) {
             gridPane.getColumnConstraints().add(new ColumnConstraints(20));
@@ -93,7 +91,7 @@ public class Main extends Application {
         }
     }
 
-    private void drawLand(Label[][] landNodes) {
+    public void drawLand(Label[][] landNodes) {
         for (int i = 0; i < MaxCoordinates.maxCols; i++) {
             for (int j = 0; j < MaxCoordinates.maxRows; j++) {
                 Tile tile = land.getGrid(new Coordinates(i, j));
@@ -156,11 +154,11 @@ public class Main extends Application {
         this.turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
 
         this.land = new Land();
-        this.goblin = new Goblin();
-        this.human = new Human();
+        this.goblin = new Goblin(new Coordinates(0, 0));
+        this.human = new Human(new Coordinates(MaxCoordinates.maxCols/2, MaxCoordinates.maxRows/2));
         this.random = new Random();
 
-        initializePlayers(properties, goblin, human);
+        initializePlayers(properties);
 
         lootList = Loot.getLootList(random);
         gameState = GameState.PLAYING;

@@ -1,5 +1,6 @@
 package genspark.humansvsgoblins;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -8,20 +9,15 @@ import java.util.stream.Collectors;
 
 public class Human extends Player {
 
-    public Human() {
-        super();
+    public Human(Coordinates coordinates) {
+        super(coordinates);
         this.shape = "\uD83D\uDC64"; //👤
     }
 
-    public void move(Scanner scanner) {
-        String key;
-        try {
-            key = String.valueOf(scanner.next().strip().toLowerCase(Locale.ROOT).charAt(0));
-        } catch (Exception e) {
-            key = "n";
-        }
-        this.move(key);
-    }
+//    public Human() {
+//        super();
+//        this.shape = "\uD83D\uDC64"; //👤
+//    }
 
     public void move(String key) {
         switch (key) {
