@@ -3,24 +3,25 @@ package genspark.humansvsgoblins_gui;
 import genspark.humansvsgoblins.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.FileReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main extends Application {
     Properties properties;
-    int turnsLeft;
     Land land;
     GameState gameState;
     ArrayList<Piece> lootList;
-    Label[][] landNodes = null;
     String statusText = "";
 
     public static void main(String[] args) {
@@ -65,18 +66,21 @@ public class Main extends Application {
         return "";
     }
 
-    public void drawLandInitial(GridPane gridPane) {
-        landNodes = new Label[MaxCoordinates.maxRows][MaxCoordinates.maxCols];
+    public Label[][] setInitialLandNodes(GridPane gridPane, Label[][] landNodes) {
         for (int i = 0; i < MaxCoordinates.maxCols; i++) {
             gridPane.getColumnConstraints().add(new ColumnConstraints(20));
             for (int j = 0; j < MaxCoordinates.maxRows; j++) {
-                Tile tile = land.getGrid(new Coordinates(i, j));
-                Label l = new Label(tile.toString());
-                l.setBorder(new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID,
-                        new CornerRadii(3.0), new BorderWidths(0.5))));
-                l.setAlignment(Pos.CENTER);
-                landNodes[j][i] = l;
-                gridPane.add(landNodes[j][i], i, j);
+                gridPane.add(land.getGrid(new Coordinates(i, j)).label, i, j);
+            }
+        }
+        return landNodes;
+    }
+
+    public void setInitialLand(GridPane gridPane) {
+        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
+            gridPane.getColumnConstraints().add(new ColumnConstraints(20));
+            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
+                gridPane.add(land.getGrid(new Coordinates(i, j)).label, i, j);
             }
         }
     }
@@ -90,13 +94,13 @@ public class Main extends Application {
         }
     }
 
-    public void movePlayer(String key, Label[][] landNodes, Human human, Goblin goblin) {
+    public void movePlayer(String key, int turnsLeft, Human human, Goblin goblin) {
         key = key.toLowerCase(Locale.ROOT);
         human.move(key);
-        goblin.move(human, this.turnsLeft);
+        goblin.move(human, turnsLeft);
         if (land.getGrid(human.getCoordinates()).piece != null) {
             lootList = human.absorbLoot(lootList);
-            land.setGrid(human.getCoordinates(), null);
+            land.setGrid(human.getCoordinates());
         }
         if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
             human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
@@ -113,14 +117,13 @@ public class Main extends Application {
             goblin.moveEast();
         }
 
-        this.turnsLeft--;
-        gameState = determineGameState(this.turnsLeft, goblin, human, gameState);
+        gameState = determineGameState(turnsLeft, goblin, human, gameState);
 
         statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
                 human.getHealth(), human.getAttack(), human.getDefence());
         statusText += String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin,
                 goblin.getHealth(), goblin.getAttack(), goblin.getDefence());
-        statusText += String.format("%d turns left%n", this.turnsLeft);
+        statusText += String.format("%d turns left%n", turnsLeft);
         System.out.println(statusText);
 
         if (gameState.equals(GameState.WON)) {
@@ -130,7 +133,7 @@ public class Main extends Application {
         }
 
         this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
-        drawLand(landNodes);
+//        drawLand(landNodes);
         System.out.println(this.land);
         System.out.println(getEndGameMessage(gameState));
         statusText += getEndGameMessage(gameState);
@@ -141,7 +144,7 @@ public class Main extends Application {
         this.properties = getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
-        this.turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
+        AtomicInteger turnsLeft = new AtomicInteger(Integer.parseInt((String) properties.get("maxTurns")));
 
         this.land = new Land();
         Goblin goblin = new Goblin(new Coordinates(0, 0), properties);
@@ -171,12 +174,14 @@ public class Main extends Application {
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
 
-        drawLandInitial(gridPane);
+        setInitialLand(gridPane);
         stage.setTitle("Humans Vs. Goblins");
 
         scene.setOnKeyPressed((KeyEvent key) -> {
-            if (gameState == GameState.PLAYING)
-                movePlayer(key.getCode().toString(), landNodes, human, goblin);
+            if (gameState == GameState.PLAYING) {
+                movePlayer(key.getCode().toString(), turnsLeft.get(), human, goblin);
+                turnsLeft.getAndDecrement();
+            }
             bottomLabel.setText(statusText);
             if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
                 System.exit(0);

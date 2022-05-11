@@ -2,12 +2,11 @@ package genspark.humansvsgoblins;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class Land {
-    ArrayList<ArrayList<Tile>> grid;
+    public ArrayList<ArrayList<Tile>> grid;
+    //    ArrayList<ArrayList<Label>> landNodes;
     int maxColumns, maxRows;
 
     public Land() {
@@ -18,20 +17,39 @@ public class Land {
 
     public ArrayList<ArrayList<Tile>> emptyGrid() {
         ArrayList<ArrayList<Tile>> newGrid = new ArrayList<>();
-        Tile[] emptyColumns = new Tile[this.maxColumns];
-        Arrays.fill(emptyColumns, new Tile());
-        for (int i = 0; i <= this.maxRows - 1; i++) {
-            newGrid.add(new ArrayList<>(List.of(emptyColumns)));
+//        Tile[] emptyColumns = new Tile[this.maxColumns];
+        for (int i = 0; i <= this.maxRows; i++) {
+            ArrayList<Tile> columnGrid = new ArrayList<>();
+            for (int j = 0; j <= this.maxColumns; j++) {
+                columnGrid.add(new Tile());
+            }
+            newGrid.add(columnGrid);
         }
+//        Arrays.fill(emptyColumns, new Tile());
+//        for (int i = 0; i <= this.maxRows - 1; i++) {
+//            newGrid.add(new ArrayList<>(List.of(emptyColumns)));
+//        }
         return newGrid;
     }
 
     public void setGrid(Coordinates coordinates, Piece piece) {
-        grid.get(coordinates.y).set(coordinates.x, new Tile(piece));
+//        grid.get(coordinates.y).set(coordinates.x, new Tile(piece));
+//        grid.get(coordinates.y).get(coordinates.x).label.setText(piece.toString());
+        grid.get(coordinates.y).get(coordinates.x).setTile(piece);
+//        grid.get(coordinates.y).get(coordinates.x).label.setText();
+
     }
 
     public void setGrid(Piece piece) {
         setGrid(piece.getCoordinates(), piece);
+    }
+
+    public void setGrid(Coordinates coordinates, Tile tile) {
+        grid.get(coordinates.y).set(coordinates.x, tile);
+    }
+
+    public void setGrid(Coordinates coordinates) {
+        grid.get(coordinates.y).get(coordinates.x).setTile(new Piece());
     }
 
     public Tile getGrid(Coordinates coordinates) {
@@ -45,7 +63,11 @@ public class Land {
     }
 
     public void update(ArrayList<Piece> players, ArrayList<Piece> lootList) {
-        this.grid = emptyGrid();
+        for (int i = 0; i <= this.maxRows; i++) {
+            for (int j = 0; j <= this.maxColumns; j++) {
+                this.setGrid(new Coordinates(j, i));
+            }
+        }
         addPieces(lootList);
         addPieces(players);
     }

@@ -12,7 +12,11 @@ public class Piece {
 
     public Piece(Coordinates coordinates) {
         this.coordinates = coordinates;
-        this.shape = " P";
+        this.shape = " ";
+    }
+
+    public Piece() {
+        this(new Coordinates(0, 0));
     }
 
     public Coordinates getCoordinates() {

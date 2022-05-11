@@ -1,7 +1,8 @@
 package genspark.humansvsgoblins;
 
-import java.lang.reflect.Constructor;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 public class Human extends Player {
