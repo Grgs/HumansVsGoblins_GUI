@@ -1,10 +1,7 @@
 package genspark.humansvsgoblins;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Human extends Player {
@@ -14,10 +11,11 @@ public class Human extends Player {
         this.shape = "\uD83D\uDC64"; //👤
     }
 
-//    public Human() {
-//        super();
-//        this.shape = "\uD83D\uDC64"; //👤
-//    }
+    public Human(Coordinates coordinates, Properties properties) {
+        this(coordinates);
+        this.health = Integer.parseInt((String) properties.get("initialHumanHealth"));
+        this.attack = Integer.parseInt((String) properties.get("initialHumanAttack"));
+    }
 
     public void move(String key) {
         switch (key) {

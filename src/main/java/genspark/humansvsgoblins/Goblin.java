@@ -1,5 +1,6 @@
 package genspark.humansvsgoblins;
 
+import java.util.Properties;
 import java.util.Random;
 
 public class Goblin extends Player {
@@ -7,6 +8,12 @@ public class Goblin extends Player {
     public Goblin(Coordinates coordinates) {
         super(coordinates);
         this.shape = "\uD83D\uDC7A"; //👺
+    }
+
+    public Goblin(Coordinates coordinates, Properties properties) {
+        this(coordinates);
+        this.health = Integer.parseInt((String) properties.get("initialGoblinHealth"));
+        this.attack = Integer.parseInt((String) properties.get("initialGoblinAttack"));
     }
 
     public Human combat(Human human, Random random, float randomness) {

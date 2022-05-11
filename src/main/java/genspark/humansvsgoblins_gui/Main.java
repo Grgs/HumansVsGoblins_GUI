@@ -18,8 +18,6 @@ public class Main extends Application {
     Properties properties;
     int turnsLeft;
     Land land;
-    Goblin goblin;
-    Human human;
     Random random;
     GameState gameState;
     ArrayList<Piece> lootList;
@@ -43,13 +41,6 @@ public class Main extends Application {
             System.exit(1);
         }
         return properties;
-    }
-
-    public void initializePlayers(Properties properties) {
-        goblin.setHealth(Integer.parseInt((String) properties.get("initialGoblinHealth")));
-        goblin.setAttack(Integer.parseInt((String) properties.get("initialGoblinAttack")));
-        human.setHealth(Integer.parseInt((String) properties.get("initialHumanHealth")));
-        human.setAttack(Integer.parseInt((String) properties.get("initialHumanAttack")));
     }
 
     public static GameState determineGameState(int turnsLeft, Goblin goblin, Human human, GameState gameState) {
@@ -100,7 +91,7 @@ public class Main extends Application {
         }
     }
 
-    public void movePlayer(String key, Label[][] landNodes) {
+    public void movePlayer(String key, Label[][] landNodes, Human human, Goblin goblin) {
         key = key.toLowerCase(Locale.ROOT);
         human.move(key);
         goblin.move(human, this.turnsLeft);
@@ -154,20 +145,19 @@ public class Main extends Application {
         this.turnsLeft = Integer.parseInt((String) properties.get("maxTurns"));
 
         this.land = new Land();
-        this.goblin = new Goblin(new Coordinates(0, 0));
-        this.human = new Human(new Coordinates(MaxCoordinates.maxCols/2, MaxCoordinates.maxRows/2));
+        Goblin goblin = new Goblin(new Coordinates(0, 0), properties);
+        Human human = new Human(new Coordinates(MaxCoordinates.maxCols / 2,
+                MaxCoordinates.maxRows / 2), properties);
         this.random = new Random();
-
-        initializePlayers(properties);
 
         lootList = Loot.getLootList(random);
         gameState = GameState.PLAYING;
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
         Scene scene = null;
-        try{
+        try {
             scene = new Scene(fxmlLoader.load(), 650, 550);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Could not open main-view.fxml\n" + e.getLocalizedMessage());
             System.exit(1);
         }
@@ -182,12 +172,13 @@ public class Main extends Application {
         System.out.println(land);
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
+
         drawLandInitial(gridPane);
         stage.setTitle("Humans Vs. Goblins");
 
         scene.setOnKeyPressed((KeyEvent key) -> {
             if (gameState == GameState.PLAYING)
-                movePlayer(key.getCode().toString(), landNodes);
+                movePlayer(key.getCode().toString(), landNodes, human, goblin);
             bottomLabel.setText(statusText);
             if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
                 System.exit(0);
