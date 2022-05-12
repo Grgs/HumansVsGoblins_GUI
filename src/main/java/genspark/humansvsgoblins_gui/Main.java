@@ -22,7 +22,6 @@ public class Main extends Application {
     Land land;
     GameState gameState;
     ArrayList<Piece> lootList;
-    String statusText = "";
 
     public static void main(String[] args) {
         launch();
@@ -66,16 +65,6 @@ public class Main extends Application {
         return "";
     }
 
-    public Label[][] setInitialLandNodes(GridPane gridPane, Label[][] landNodes) {
-        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
-            gridPane.getColumnConstraints().add(new ColumnConstraints(20));
-            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
-                gridPane.add(land.getGrid(new Coordinates(i, j)).label, i, j);
-            }
-        }
-        return landNodes;
-    }
-
     public void setInitialLand(GridPane gridPane) {
         for (int i = 0; i < MaxCoordinates.maxCols; i++) {
             gridPane.getColumnConstraints().add(new ColumnConstraints(20));
@@ -85,16 +74,7 @@ public class Main extends Application {
         }
     }
 
-    public void drawLand(Label[][] landNodes) {
-        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
-            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
-                Tile tile = land.getGrid(new Coordinates(i, j));
-                landNodes[j][i].setText(tile.toString());
-            }
-        }
-    }
-
-    public void movePlayer(String key, int turnsLeft, Human human, Goblin goblin) {
+    private void movePlayer(String key, int turnsLeft, Human human, Goblin goblin) {
         key = key.toLowerCase(Locale.ROOT);
         human.move(key);
         goblin.move(human, turnsLeft);
@@ -116,27 +96,18 @@ public class Main extends Application {
         if (human.getCoordinates().equals(goblin.getCoordinates())) {
             goblin.moveEast();
         }
+    }
 
-        gameState = determineGameState(turnsLeft, goblin, human, gameState);
-
-        statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
+    private String getStatusText(int turnsLeft, Human human, Goblin goblin) {
+        String statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
                 human.getHealth(), human.getAttack(), human.getDefence());
         statusText += String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin,
                 goblin.getHealth(), goblin.getAttack(), goblin.getDefence());
         statusText += String.format("%d turns left%n", turnsLeft);
         System.out.println(statusText);
-
-        if (gameState.equals(GameState.WON)) {
-            goblin.shape = "  ";
-        } else if (gameState.equals(GameState.LOST)) {
-            human.shape = "  ";
-        }
-
-        this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
-//        drawLand(landNodes);
-        System.out.println(this.land);
         System.out.println(getEndGameMessage(gameState));
         statusText += getEndGameMessage(gameState);
+        return statusText;
     }
 
     @Override
@@ -180,9 +151,19 @@ public class Main extends Application {
         scene.setOnKeyPressed((KeyEvent key) -> {
             if (gameState == GameState.PLAYING) {
                 movePlayer(key.getCode().toString(), turnsLeft.get(), human, goblin);
+                gameState = determineGameState(turnsLeft.get(), goblin, human, gameState);
+
+                if (gameState.equals(GameState.WON)) {
+                    goblin.shape = "  ";
+                } else if (gameState.equals(GameState.LOST)) {
+                    human.shape = "  ";
+                }
+
+                this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
+                System.out.println(this.land);
                 turnsLeft.getAndDecrement();
             }
-            bottomLabel.setText(statusText);
+            bottomLabel.setText(getStatusText(turnsLeft.get(), human, goblin));
             if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
                 System.exit(0);
         });

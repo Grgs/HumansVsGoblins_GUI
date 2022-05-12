@@ -17,7 +17,6 @@ public class Land {
 
     public ArrayList<ArrayList<Tile>> emptyGrid() {
         ArrayList<ArrayList<Tile>> newGrid = new ArrayList<>();
-//        Tile[] emptyColumns = new Tile[this.maxColumns];
         for (int i = 0; i <= this.maxRows; i++) {
             ArrayList<Tile> columnGrid = new ArrayList<>();
             for (int j = 0; j <= this.maxColumns; j++) {
@@ -25,27 +24,15 @@ public class Land {
             }
             newGrid.add(columnGrid);
         }
-//        Arrays.fill(emptyColumns, new Tile());
-//        for (int i = 0; i <= this.maxRows - 1; i++) {
-//            newGrid.add(new ArrayList<>(List.of(emptyColumns)));
-//        }
         return newGrid;
     }
 
     public void setGrid(Coordinates coordinates, Piece piece) {
-//        grid.get(coordinates.y).set(coordinates.x, new Tile(piece));
-//        grid.get(coordinates.y).get(coordinates.x).label.setText(piece.toString());
         grid.get(coordinates.y).get(coordinates.x).setTile(piece);
-//        grid.get(coordinates.y).get(coordinates.x).label.setText();
-
     }
 
     public void setGrid(Piece piece) {
         setGrid(piece.getCoordinates(), piece);
-    }
-
-    public void setGrid(Coordinates coordinates, Tile tile) {
-        grid.get(coordinates.y).set(coordinates.x, tile);
     }
 
     public void setGrid(Coordinates coordinates) {
