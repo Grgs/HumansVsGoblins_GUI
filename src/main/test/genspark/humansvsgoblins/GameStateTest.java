@@ -1,6 +1,5 @@
-package genspark.humansvsgoblins_gui;
+package genspark.humansvsgoblins;
 
-import genspark.humansvsgoblins.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +8,9 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MainTest {
+class GameStateTest {
     Properties properties;
     Human human;
     Goblin goblin;
@@ -41,27 +40,15 @@ class MainTest {
         GameState gameState = GameState.PLAYING;
         human.setHealth(10);
         goblin.setHealth(10);
-        assertEquals(GameState.PLAYING, Main.determineGameState(10, goblin, human, gameState));
+        assertEquals(GameState.PLAYING, GameState.determineGameState(10, goblin, human, gameState));
         human.setHealth(-10);
-        assertEquals(GameState.LOST, Main.determineGameState(10, goblin, human, gameState));
+        assertEquals(GameState.LOST, GameState.determineGameState(10, goblin, human, gameState));
         gameState = GameState.PLAYING;
         human.setHealth(10);
-        assertEquals(GameState.DRAW, Main.determineGameState(0, goblin, human, gameState));
+        assertEquals(GameState.DRAW, GameState.determineGameState(0, goblin, human, gameState));
         gameState = GameState.PLAYING;
         human.setHealth(10);
         goblin.setHealth(-10);
-        assertEquals(GameState.WON, Main.determineGameState(10, goblin, human, gameState));
-    }
-
-    @Test
-    void drawLandInitial() {
-    }
-
-    @Test
-    void drawLand() {
-    }
-
-    @Test
-    void movePlayer() {
+        assertEquals(GameState.WON, GameState.determineGameState(10, goblin, human, gameState));
     }
 }

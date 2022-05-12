@@ -1,5 +1,8 @@
 package genspark.humansvsgoblins;
 
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -46,6 +49,15 @@ public class Land {
     public void addPieces(ArrayList<Piece> pieces) {
         for (Piece p : pieces) {
             this.setGrid(p);
+        }
+    }
+
+    public void setInitialLand(GridPane gridPane) {
+        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
+            gridPane.getColumnConstraints().add(new ColumnConstraints(20));
+            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
+                gridPane.add(this.getGrid(new Coordinates(i, j)).label, i, j);
+            }
         }
     }
 

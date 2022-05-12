@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GoblinTest {
     Properties properties;

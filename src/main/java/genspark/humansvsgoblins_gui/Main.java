@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -42,17 +41,6 @@ public class Main extends Application {
         return properties;
     }
 
-    public static GameState determineGameState(int turnsLeft, Goblin goblin, Human human, GameState gameState) {
-        if (human.getHealth() <= 0) {
-            gameState = GameState.LOST;
-        } else if (goblin.getHealth() <= 0) {
-            gameState = GameState.WON;
-        } else if (turnsLeft <= 0) {
-            gameState = GameState.DRAW;
-        }
-        return gameState;
-    }
-
     private static String getEndGameMessage(GameState gameState) {
         switch (gameState) {
             case WON:
@@ -63,15 +51,6 @@ public class Main extends Application {
                 return ("You Survived!");
         }
         return "";
-    }
-
-    public void setInitialLand(GridPane gridPane) {
-        for (int i = 0; i < MaxCoordinates.maxCols; i++) {
-            gridPane.getColumnConstraints().add(new ColumnConstraints(20));
-            for (int j = 0; j < MaxCoordinates.maxRows; j++) {
-                gridPane.add(land.getGrid(new Coordinates(i, j)).label, i, j);
-            }
-        }
     }
 
     private void movePlayer(String key, int turnsLeft, Human human, Goblin goblin) {
@@ -121,7 +100,6 @@ public class Main extends Application {
         Goblin goblin = new Goblin(new Coordinates(0, 0), properties);
         Human human = new Human(new Coordinates(MaxCoordinates.maxCols / 2,
                 MaxCoordinates.maxRows / 2), properties);
-
         lootList = Loot.getLootList();
         gameState = GameState.PLAYING;
 
@@ -134,7 +112,6 @@ public class Main extends Application {
             System.exit(1);
         }
 
-        System.out.printf("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin);
         Label topLabel = (Label) scene.lookup("#topLabel");
         Label bottomLabel = (Label) scene.lookup("#bottomLabel");
         topLabel.setText(String.format("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin));
@@ -145,13 +122,13 @@ public class Main extends Application {
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
 
-        setInitialLand(gridPane);
+        land.setInitialLand(gridPane);
         stage.setTitle("Humans Vs. Goblins");
 
         scene.setOnKeyPressed((KeyEvent key) -> {
             if (gameState == GameState.PLAYING) {
                 movePlayer(key.getCode().toString(), turnsLeft.get(), human, goblin);
-                gameState = determineGameState(turnsLeft.get(), goblin, human, gameState);
+                gameState = GameState.determineGameState(turnsLeft.get(), goblin, human, gameState);
 
                 if (gameState.equals(GameState.WON)) {
                     goblin.shape = "  ";
