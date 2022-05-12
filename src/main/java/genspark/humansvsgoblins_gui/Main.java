@@ -41,18 +41,6 @@ public class Main extends Application {
         return properties;
     }
 
-    private static String getEndGameMessage(GameState gameState) {
-        switch (gameState) {
-            case WON:
-                return ("You Won!");
-            case LOST:
-                return ("You Lost!");
-            case DRAW:
-                return ("You Survived!");
-        }
-        return "";
-    }
-
     private void movePlayer(String key, int turnsLeft, Human human, Goblin goblin) {
         key = key.toLowerCase(Locale.ROOT);
         human.move(key);
@@ -75,18 +63,6 @@ public class Main extends Application {
         if (human.getCoordinates().equals(goblin.getCoordinates())) {
             goblin.moveEast();
         }
-    }
-
-    private String getStatusText(int turnsLeft, Human human, Goblin goblin) {
-        String statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
-                human.getHealth(), human.getAttack(), human.getDefence());
-        statusText += String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin,
-                goblin.getHealth(), goblin.getAttack(), goblin.getDefence());
-        statusText += String.format("%d turns left%n", turnsLeft);
-        System.out.println(statusText);
-        System.out.println(getEndGameMessage(gameState));
-        statusText += getEndGameMessage(gameState);
-        return statusText;
     }
 
     @Override
@@ -140,7 +116,7 @@ public class Main extends Application {
                 System.out.println(this.land);
                 turnsLeft.getAndDecrement();
             }
-            bottomLabel.setText(getStatusText(turnsLeft.get(), human, goblin));
+            bottomLabel.setText(gameState.getStatusText(gameState, turnsLeft.get(), human, goblin));
             if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
                 System.exit(0);
         });
