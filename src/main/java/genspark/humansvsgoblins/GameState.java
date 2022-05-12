@@ -1,7 +1,5 @@
 package genspark.humansvsgoblins;
 
-import genspark.humansvsgoblins_gui.Main;
-
 public enum GameState {
     PLAYING, WON, LOST, DRAW;
 
