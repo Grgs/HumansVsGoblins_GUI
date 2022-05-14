@@ -27,9 +27,9 @@ public enum GameState {
     }
 
     public String getStatusText(GameState gameState, int turnsLeft, Human human, Goblin goblin) {
-        String statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human,
+        String statusText = String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", human.defaultShape,
                 human.getHealth(), human.getAttack(), human.getDefence());
-        statusText += String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin,
+        statusText += String.format("%s: Health = %d\t Attack = %d\t Defence = %d%n", goblin.defaultShape,
                 goblin.getHealth(), goblin.getAttack(), goblin.getDefence());
         statusText += String.format("%d turns left%n", turnsLeft);
         System.out.println(statusText);

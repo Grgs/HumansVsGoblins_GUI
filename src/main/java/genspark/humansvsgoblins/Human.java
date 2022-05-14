@@ -10,6 +10,7 @@ public class Human extends Player {
     public Human(Coordinates coordinates) {
         super(coordinates);
         this.shape = "\uD83D\uDC64"; //👤
+        this.defaultShape = "\uD83D\uDC64"; //👤
     }
 
     public Human(Coordinates coordinates, Properties properties) {

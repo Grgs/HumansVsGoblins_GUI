@@ -9,6 +9,7 @@ public class Goblin extends Player {
     public Goblin(Coordinates coordinates) {
         super(coordinates);
         this.shape = "\uD83D\uDC7A"; //👺
+        this.defaultShape = "\uD83D\uDC7A"; //👺
         this.random = new Random();
     }
 

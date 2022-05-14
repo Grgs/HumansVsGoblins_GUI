@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class Land {
     public ArrayList<ArrayList<Tile>> grid;
-    //    ArrayList<ArrayList<Label>> landNodes;
     int maxColumns, maxRows;
 
     public Land() {

@@ -7,12 +7,14 @@ public class Piece {
     public int health;
     public int defence;
     public String shape;
+    public String defaultShape;
     Coordinates coordinates;
 
 
     public Piece(Coordinates coordinates) {
         this.coordinates = coordinates;
         this.shape = " ";
+        this.defaultShape = " ";
     }
 
     public Piece() {
