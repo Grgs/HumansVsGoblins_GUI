@@ -1,10 +1,8 @@
 package genspark.humansvsgoblins;
 
 public class Coordinates {
-    int maxY;
-    int maxX;
-    int y;
-    int x;
+    int maxY, maxX;
+    int y, x;
 
     public Coordinates(int x, int y) {
         this.maxX = MaxCoordinates.maxCols;
@@ -24,12 +22,8 @@ public class Coordinates {
 
         this.x = x % this.maxX;
         this.y = y % this.maxY;
-        if (this.x < 0) {
-            this.x += this.maxX;
-        }
-        if (this.y < 0) {
-            this.y += this.maxY;
-        }
+        if (this.x < 0) this.x += this.maxX;
+        if (this.y < 0) this.y += this.maxY;
     }
 
     public boolean collidesWith(Coordinates coordinates) {

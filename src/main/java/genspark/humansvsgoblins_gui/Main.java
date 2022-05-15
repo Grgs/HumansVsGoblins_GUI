@@ -52,9 +52,12 @@ public class Main extends Application {
         if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
             human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
             Loot lootDrop = new Loot(new Coordinates(goblin.getCoordinates()));
-            while (lootDrop.getCoordinates().equals(human.getCoordinates()) ||
-                    lootDrop.getCoordinates().equals(goblin.getCoordinates())) {
+            int n = 0;
+            while ((lootDrop.getCoordinates().equals(human.getCoordinates()) ||
+                    lootDrop.getCoordinates().equals(goblin.getCoordinates())) &&
+                    n < 3) {
                 lootDrop.moveEast();
+                n++;
             }
             lootDrop.setDefence(5);
             lootList.add(lootDrop);
@@ -62,6 +65,14 @@ public class Main extends Application {
 
         if (human.getCoordinates().equals(goblin.getCoordinates())) {
             goblin.moveEast();
+        }
+    }
+
+    private void removeLosingPlayer(Goblin goblin, Human human) {
+        if (gameState.equals(GameState.WON)) {
+            goblin.shape = "  ";
+        } else if (gameState.equals(GameState.LOST)) {
+            human.shape = "  ";
         }
     }
 
@@ -105,13 +116,7 @@ public class Main extends Application {
             if (gameState == GameState.PLAYING) {
                 movePlayer(key.getCode().toString(), turnsLeft.get(), human, goblin);
                 gameState = GameState.determineGameState(turnsLeft.get(), goblin, human, gameState);
-
-                if (gameState.equals(GameState.WON)) {
-                    goblin.shape = "  ";
-                } else if (gameState.equals(GameState.LOST)) {
-                    human.shape = "  ";
-                }
-
+                removeLosingPlayer(goblin, human);
                 this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
                 System.out.println(this.land);
                 turnsLeft.getAndDecrement();

@@ -79,5 +79,4 @@ public class Piece {
         this.defence = defence;
     }
 
-
 }

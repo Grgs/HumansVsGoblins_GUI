@@ -27,8 +27,8 @@ public class Goblin extends Player {
                 (int) (randomness * random.nextGaussian()) + human.getDefence(), 0));
         this.setHealth(oldGoblinHealth + Math.min(-human.getAttack() -
                 (int) (randomness * random.nextGaussian()) + this.getDefence(), 0));
-        System.out.printf("%s health has been reduced by %d%n%s health has been reduced by %d%n", human,
-                oldHumanHealth - human.getHealth(), this, oldGoblinHealth - this.getHealth());
+        System.out.printf("%s health has been reduced by %d%n%s health has been reduced by %d%n",
+                human, oldHumanHealth - human.getHealth(), this, oldGoblinHealth - this.getHealth());
         return human;
     }
 

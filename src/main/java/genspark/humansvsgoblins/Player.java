@@ -6,7 +6,6 @@ public class Player extends Piece {
     /*Player represents playable and non-playable characters. Currently, that is Human and Goblin.*/
     ArrayList<Loot> inventory;
 
-
     public Player(Coordinates coordinates) {
         super(coordinates);
         inventory = new ArrayList<>();
@@ -17,13 +16,8 @@ public class Player extends Piece {
         inventory = new ArrayList<>();
     }
 
-
     public ArrayList<Loot> getInventory() {
         return inventory;
-    }
-
-    public void setInventory(ArrayList<Loot> inventory) {
-        this.inventory = inventory;
     }
 
 }

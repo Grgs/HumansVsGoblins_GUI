@@ -46,9 +46,7 @@ public class Land {
     }
 
     public void addPieces(ArrayList<Piece> pieces) {
-        for (Piece p : pieces) {
-            this.setGrid(p);
-        }
+        for (Piece p : pieces) this.setGrid(p);
     }
 
     public void setInitialLand(GridPane gridPane) {
