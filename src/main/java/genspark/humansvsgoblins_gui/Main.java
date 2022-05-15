@@ -41,13 +41,7 @@ public class Main extends Application {
         return properties;
     }
 
-    private void movePlayer(String key, int turnsLeft, Human human, Goblin goblin) {
-        key = key.toLowerCase(Locale.ROOT);
-        human.move(key);
-        goblin.move(human, turnsLeft);
-        if (land.getGrid(human.getCoordinates()).piece != null) {
-            lootList = human.absorbLoot(lootList);
-        }
+    private void combat(Human human, Goblin goblin) {
         if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
             human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
             Loot lootDrop = new Loot(new Coordinates(goblin.getCoordinates()));
@@ -60,10 +54,6 @@ public class Main extends Application {
             }
             lootDrop.setDefence(5);
             lootList.add(lootDrop);
-        }
-
-        if (human.getCoordinates().equals(goblin.getCoordinates())) {
-            goblin.moveEast();
         }
     }
 
@@ -107,13 +97,19 @@ public class Main extends Application {
         System.out.println(land);
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
-
         land.setInitialLand(gridPane);
         stage.setTitle("Humans Vs. Goblins");
 
         scene.setOnKeyPressed((KeyEvent key) -> {
             if (gameState == GameState.PLAYING) {
-                movePlayer(key.getCode().toString(), turnsLeft.get(), human, goblin);
+                human.move(key.getCode().toString().toLowerCase(Locale.ROOT));
+                if (land.getGrid(human.getCoordinates()).piece != null) {
+                    lootList = human.absorbLoot(lootList);
+                }
+                goblin.move(human, turnsLeft.get());
+                combat(human, goblin);
+                goblin.deStackPlayers(human);
+
                 gameState = GameState.determineGameState(turnsLeft.get(), goblin, human, gameState);
                 removeLosingPlayer(goblin, human);
                 this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);

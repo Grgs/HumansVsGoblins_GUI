@@ -65,4 +65,8 @@ public class Goblin extends Player {
         } while (Math.max(Math.abs(xDiff), Math.abs(yDiff)) > Math.max(maxTurn, 2));
     }
 
+    public void deStackPlayers(Human human) {
+        if (human.getCoordinates().equals(this.getCoordinates()))
+            moveEast();
+    }
 }
