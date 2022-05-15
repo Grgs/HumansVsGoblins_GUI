@@ -47,7 +47,6 @@ public class Main extends Application {
         goblin.move(human, turnsLeft);
         if (land.getGrid(human.getCoordinates()).piece != null) {
             lootList = human.absorbLoot(lootList);
-            land.setGrid(human.getCoordinates());
         }
         if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
             human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
@@ -78,6 +77,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 650, 550);
+        } catch (Exception e) {
+            System.out.println("Could not open main-view.fxml\n" + e.getLocalizedMessage());
+            System.exit(1);
+        }
+
         this.properties = getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
@@ -90,18 +98,9 @@ public class Main extends Application {
         lootList = Loot.getLootList();
         gameState = GameState.PLAYING;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 650, 550);
-        } catch (Exception e) {
-            System.out.println("Could not open main-view.fxml\n" + e.getLocalizedMessage());
-            System.exit(1);
-        }
-
         Label topLabel = (Label) scene.lookup("#topLabel");
         Label bottomLabel = (Label) scene.lookup("#bottomLabel");
-        topLabel.setText(String.format("Human\tVs\tGoblin%n%s\t\tVs\t%s%n", human, goblin));
+        topLabel.setText(String.format("Humans\tVs\tGoblins%n%s\t\tVs\t%s%n", human, goblin));
         bottomLabel.setText("type 'q' to quit or%n\" +\n" +
                 "type 'w', 'a', 's' or 'd' to move up, left, down or right");
         land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
