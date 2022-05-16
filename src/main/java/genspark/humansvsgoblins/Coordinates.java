@@ -1,7 +1,8 @@
 package genspark.humansvsgoblins;
 
 public class Coordinates {
-    int maxY, maxX;
+    final int maxY;
+    final int maxX;
     int y, x;
 
     public Coordinates(int x, int y) {

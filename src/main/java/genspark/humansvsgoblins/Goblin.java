@@ -4,7 +4,7 @@ import java.util.Properties;
 import java.util.Random;
 
 public class Goblin extends Player {
-    Random random;
+    final Random random;
 
     public Goblin(Coordinates coordinates) {
         super(coordinates);

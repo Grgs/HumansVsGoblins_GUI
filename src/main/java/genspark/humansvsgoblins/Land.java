@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Land {
+    final int maxColumns;
+    final int maxRows;
     public ArrayList<ArrayList<Tile>> grid;
-    int maxColumns, maxRows;
 
     public Land() {
         this.maxColumns = MaxCoordinates.maxCols;
