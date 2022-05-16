@@ -19,9 +19,9 @@ public class Land {
 
     public ArrayList<ArrayList<Tile>> emptyGrid() {
         ArrayList<ArrayList<Tile>> newGrid = new ArrayList<>();
-        for (int i = 0; i <= this.maxRows; i++) {
+        for (int i = 0; i < this.maxRows; i++) {
             ArrayList<Tile> columnGrid = new ArrayList<>();
-            for (int j = 0; j <= this.maxColumns; j++) {
+            for (int j = 0; j < this.maxColumns; j++) {
                 columnGrid.add(new Tile());
             }
             newGrid.add(columnGrid);
@@ -59,8 +59,8 @@ public class Land {
     }
 
     public void update(ArrayList<Piece> players, ArrayList<Piece> lootList) {
-        for (int i = 0; i <= this.maxRows; i++) {
-            for (int j = 0; j <= this.maxColumns; j++) {
+        for (int i = 0; i < this.maxRows; i++) {
+            for (int j = 0; j < this.maxColumns; j++) {
                 this.setGrid(new Coordinates(j, i));
             }
         }

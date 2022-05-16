@@ -1,14 +1,11 @@
 package genspark.humansvsgoblins;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.matcher.control.LabeledMatchers;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,24 +15,25 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LandTest {
+class LandTest extends ApplicationTest {
 
-    private Button button;
     Land land;
     Human human;
     Goblin goblin;
 
-//    @Override
-//    public void start(Stage stage) {
-//        button = new Button("click me!");
-//        button.setOnAction(actionEvent -> button.setText("clicked!"));
-//        stage.setScene(new Scene(new StackPane(button), 100, 100));
-//        stage.show();
-//    }
-//    @Test
-//    public void should_contain_button_with_text() {
-//        FxAssert.verifyThat(".button", LabeledMatchers.hasText("click me!"));
-//    }
+    @Override
+    public void start(Stage stage) {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 650, 550);
+        } catch (Exception e) {
+            System.out.println("Could not open main-view.fxml\n" + e.getLocalizedMessage());
+            System.exit(1);
+        }
+        stage.setScene(scene);
+    }
+
     @BeforeEach
     void setUp() {
         MaxCoordinates.maxCols = 20;
@@ -49,44 +47,35 @@ class LandTest {
     void emptyGrid() {
         assertEquals(30, land.grid.size());
         assertEquals(20, land.grid.get(0).size());
-//        Set<Tile> gridSet = land.grid.stream().flatMap(Collection::stream).collect(Collectors.toSet());
-//        assertEquals(1, gridSet.size());
+        Set<String> gridSet = land.grid.stream().flatMap(Collection::stream).map(l -> l.label.getText()).
+                collect(Collectors.toSet());
+        assertEquals(1, gridSet.size());
     }
 
-//    @Test
-//    void setGrid() {
-//    }
-//
-//    @Test
-//    void testSetGrid() {
-//    }
-//
-//    @Test
-//    void getGrid() {
-//    }
-//
-//    @Test
-//    void addPieces() {
-//        human.setCoordinates(1, 2);
-//        goblin.setCoordinates(2, 3);
-//        land.addPieces(new ArrayList<>(List.of(new Piece[]{human, goblin})));
-//        assertEquals(human.toString(), land.getGrid(new Coordinates(1, 2)).toString());
-//        assertEquals(goblin.toString(), land.getGrid(new Coordinates(2, 3)).toString());
-//        Set<Tile> gridSet = land.grid.stream().flatMap(Collection::stream).collect(Collectors.toSet());
-//        assertEquals(3, gridSet.size());
-//    }
-//
-//    @Test
-//    void update() {
-//        human.setCoordinates(1, 2);
-//        goblin.setCoordinates(2, 3);
-//        Loot loot = new Loot(new Coordinates(3, 4));
-//        land.update(new ArrayList<>(List.of(new Player[]{human, goblin})),
-//                new ArrayList<>(List.of(new Loot[]{loot})));
-//        assertEquals(human.toString(), land.getGrid(new Coordinates(1, 2)).toString());
-//        assertEquals(goblin.toString(), land.getGrid(new Coordinates(2, 3)).toString());
-//        assertEquals(loot.toString(), land.getGrid(new Coordinates(3, 4)).toString());
-//        Set<Tile> gridSet = land.grid.stream().flatMap(Collection::stream).collect(Collectors.toSet());
-//        assertEquals(4, gridSet.size());
-//    }
+    @Test
+    void addPieces() {
+        human.setCoordinates(1, 2);
+        goblin.setCoordinates(2, 3);
+        land.addPieces(new ArrayList<>(List.of(new Piece[]{human, goblin})));
+        assertEquals(human.toString(), land.getGrid(new Coordinates(1, 2)).toString());
+        assertEquals(goblin.toString(), land.getGrid(new Coordinates(2, 3)).toString());
+        Set<String> gridSet = land.grid.stream().flatMap(Collection::stream).map(l -> l.label.getText()).
+                collect(Collectors.toSet());
+        assertEquals(3, gridSet.size());
+    }
+
+    @Test
+    void update() {
+        human.setCoordinates(1, 2);
+        goblin.setCoordinates(2, 3);
+        Loot loot = new Loot(new Coordinates(3, 4));
+        land.update(new ArrayList<>(List.of(new Player[]{human, goblin})),
+                new ArrayList<>(List.of(new Loot[]{loot})));
+        assertEquals(human.toString(), land.getGrid(new Coordinates(1, 2)).toString());
+        assertEquals(goblin.toString(), land.getGrid(new Coordinates(2, 3)).toString());
+        assertEquals(loot.toString(), land.getGrid(new Coordinates(3, 4)).toString());
+        Set<String> gridSet = land.grid.stream().flatMap(Collection::stream).map(l -> l.label.getText()).
+                collect(Collectors.toSet());
+        assertEquals(4, gridSet.size());
+    }
 }
