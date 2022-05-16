@@ -1,8 +1,8 @@
-module genspark.humansvsgoblins_gui {
+module genspark.humansvsgoblins {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.kordamp.ikonli.javafx;
 
-    exports genspark.humansvsgoblins_gui;
-    opens genspark.humansvsgoblins_gui to javafx.fxml;
+    exports genspark.humansvsgoblins;
+    opens genspark.humansvsgoblins to javafx.fxml;
 }

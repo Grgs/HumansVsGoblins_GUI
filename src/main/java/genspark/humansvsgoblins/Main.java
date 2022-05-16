@@ -1,6 +1,5 @@
-package genspark.humansvsgoblins_gui;
+package genspark.humansvsgoblins;
 
-import genspark.humansvsgoblins.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
