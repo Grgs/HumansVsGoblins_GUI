@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,7 +13,6 @@ class GameStateTest {
     Properties properties;
     Human human;
     Goblin goblin;
-    Random random;
 
     @BeforeEach
     void setUp() {
@@ -32,7 +30,6 @@ class GameStateTest {
         MaxCoordinates.maxRows = 20;
         human = new Human(new Coordinates(1, 1));
         goblin = new Goblin(new Coordinates(0, 0));
-        random = new Random();
     }
 
     @Test

@@ -17,10 +17,6 @@ class HumanTest {
     }
 
     @Test
-    void move() {
-    }
-
-    @Test
     void absorbLoot() {
         MaxCoordinates.maxCols = 100;
         MaxCoordinates.maxRows = 100;
