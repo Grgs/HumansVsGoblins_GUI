@@ -6,6 +6,9 @@ import java.util.Random;
 public class Goblin extends Player {
     final Random random;
 
+    /**
+     * @param coordinates Starting coordinates of Goblin
+     */
     public Goblin(Coordinates coordinates) {
         super(coordinates);
         this.shape = "\uD83D\uDC7A"; //👺
@@ -13,12 +16,22 @@ public class Goblin extends Player {
         this.random = new Random();
     }
 
+    /**
+     * @param coordinates Starting coordinates of Goblin
+     * @param properties  Initial game properties to get initial health and attack values
+     */
     public Goblin(Coordinates coordinates, Properties properties) {
         this(coordinates);
         this.health = Integer.parseInt((String) properties.get("initialGoblinHealth"));
         this.attack = Integer.parseInt((String) properties.get("initialGoblinAttack"));
     }
 
+    /**
+     * @param human      Human player
+     * @param randomness The amount of randomness in attack values. The higher the number the more
+     *                   variation between player attack and actual attack inflicted. 0 means no randomness.
+     * @return the human player with health affected by combat.
+     */
     public Human combat(Human human, float randomness) {
         System.out.println("combat");
         int oldHumanHealth = human.getHealth();
@@ -32,6 +45,10 @@ public class Goblin extends Player {
         return human;
     }
 
+    /**
+     * @param human   The human player.
+     * @param maxTurn The maximum number of turns until the game ends.
+     */
     public void move(Human human, int maxTurn) {
         int xDiff;
         int yDiff;
@@ -65,6 +82,11 @@ public class Goblin extends Player {
         } while (Math.max(Math.abs(xDiff), Math.abs(yDiff)) > Math.max(maxTurn, 2));
     }
 
+    /**
+     * If the goblin and human are on top of each other, then move them apart.
+     *
+     * @param human The Human player.
+     */
     public void deStackPlayers(Human human) {
         if (human.getCoordinates().equals(this.getCoordinates()))
             moveEast();

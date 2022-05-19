@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -16,15 +17,30 @@ import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main extends Application {
+    /**
+     * Game properties stored in a file.
+     */
     Properties properties;
+    /**
+     * Playing surface where player and loot are to be displayed. Game map.
+     */
     Land land;
+    /**
+     * Status of the game.
+     */
     GameState gameState;
+    /**
+     * A list of loot available on the land.
+     */
     ArrayList<Piece> lootList;
 
     public static void main(String[] args) {
         launch();
     }
 
+    /**
+     * @return Game properties from file.
+     */
     private static Properties getProperties() {
         Properties properties = null;
         try {
@@ -40,22 +56,46 @@ public class Main extends Application {
         return properties;
     }
 
-    private void combat(Human human, Goblin goblin) {
-        if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
-            human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
-            Loot lootDrop = new Loot(new Coordinates(goblin.getCoordinates()));
-            int n = 0;
-            while ((lootDrop.getCoordinates().equals(human.getCoordinates()) ||
-                    lootDrop.getCoordinates().equals(goblin.getCoordinates())) &&
-                    n < 3) {
-                lootDrop.moveEast();
-                n++;
-            }
-            lootDrop.setDefence(5);
-            lootList.add(lootDrop);
+    /**
+     * @return Main window scene.
+     */
+    @NotNull
+    private Scene initializeScene() {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 650, 550);
+        } catch (Exception e) {
+            System.out.println("Could not open main-view.fxml\n" + e.getLocalizedMessage());
+            System.exit(1);
         }
+        return scene;
     }
 
+    /**
+     * @param human  The human player.
+     * @param goblin The Goblin player.
+     */
+    private void combat(Human human, Goblin goblin) {
+        human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
+        Loot lootDrop = new Loot(new Coordinates(goblin.getCoordinates()));
+        int n = 0;
+        while ((lootDrop.getCoordinates().equals(human.getCoordinates()) ||
+                lootDrop.getCoordinates().equals(goblin.getCoordinates())) &&
+                n < 3) {
+            lootDrop.moveEast();
+            n++;
+        }
+        lootDrop.setDefence(5);
+        lootList.add(lootDrop);
+    }
+
+    /**
+     * Removes the whoever loses from the land.
+     *
+     * @param goblin Goblin player
+     * @param human  Human player
+     */
     private void removeLosingPlayer(Goblin goblin, Human human) {
         if (gameState.equals(GameState.WON)) {
             goblin.shape = "  ";
@@ -66,15 +106,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 650, 550);
-        } catch (Exception e) {
-            System.out.println("Could not open main-view.fxml\n" + e.getLocalizedMessage());
-            System.exit(1);
-        }
-
+        Scene scene = initializeScene();
         this.properties = getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
@@ -87,13 +119,12 @@ public class Main extends Application {
         lootList = Loot.getLootList();
         gameState = GameState.PLAYING;
 
-        Label topLabel = (Label) scene.lookup("#topLabel");
+        ((Label) scene.lookup("#topLabel")).setText(
+                String.format("Humans\tVs\tGoblins%n%s\t\tVs\t%s%n", human, goblin));
         Label bottomLabel = (Label) scene.lookup("#bottomLabel");
-        topLabel.setText(String.format("Humans\tVs\tGoblins%n%s\t\tVs\t%s%n", human, goblin));
         bottomLabel.setText("type 'q' to quit or%n\" +\n" +
                 "type 'w', 'a', 's' or 'd' to move up, left, down or right");
         land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
-        System.out.println(land);
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
         land.setInitialLand(gridPane);
@@ -106,7 +137,9 @@ public class Main extends Application {
                     lootList = human.absorbLoot(lootList);
                 }
                 goblin.move(human, turnsLeft.get());
-                combat(human, goblin);
+                if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
+                    combat(human, goblin);
+                }
                 goblin.deStackPlayers(human);
 
                 gameState = GameState.determineGameState(turnsLeft.get(), goblin, human, gameState);

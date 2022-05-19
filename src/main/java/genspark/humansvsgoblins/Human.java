@@ -7,18 +7,28 @@ import java.util.stream.Collectors;
 
 public class Human extends Player {
 
+    /**
+     * @param coordinates Starting coordinates of the player.
+     */
     public Human(Coordinates coordinates) {
         super(coordinates);
         this.shape = "\uD83D\uDC64"; //👤
         this.defaultShape = "\uD83D\uDC64"; //👤
     }
 
+    /**
+     * @param coordinates Starting coordinates of the player
+     * @param properties  Initial game properties to get initial health and attack values
+     */
     public Human(Coordinates coordinates, Properties properties) {
         this(coordinates);
         this.health = Integer.parseInt((String) properties.get("initialHumanHealth"));
         this.attack = Integer.parseInt((String) properties.get("initialHumanAttack"));
     }
 
+    /**
+     * @param key Keyboard code indicating player movement.
+     */
     public void move(String key) {
         switch (key) {
             case "w":
@@ -45,6 +55,12 @@ public class Human extends Player {
         }
     }
 
+    /**
+     * Take the loot that the human is on and add its values to the player.
+     *
+     * @param lootList List of loot on the land.
+     * @return List of loot on the land after the loot has been absorbed.
+     */
     public ArrayList<Piece> absorbLoot(ArrayList<Piece> lootList) {
         List<Piece> capturedLootList = lootList.stream().filter(l -> l.coordinates.
                 equals(this.getCoordinates())).collect(Collectors.toList());

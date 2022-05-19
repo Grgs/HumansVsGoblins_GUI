@@ -2,6 +2,7 @@ package genspark.humansvsgoblins;
 
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ public class Land {
         this.grid = emptyGrid();
     }
 
+    /**
+     * @return a grid with empty tiles
+     */
     public ArrayList<ArrayList<Tile>> emptyGrid() {
         ArrayList<ArrayList<Tile>> newGrid = new ArrayList<>();
         for (int i = 0; i < this.maxRows; i++) {
@@ -30,23 +34,33 @@ public class Land {
         return newGrid;
     }
 
-    public void setGrid(Coordinates coordinates, Piece piece) {
+    /**
+     * @param coordinates coordinates of the piece being added to the grid
+     * @param piece       The piece being added to the grid
+     */
+    public void setGrid(@NotNull Coordinates coordinates, Piece piece) {
         grid.get(coordinates.y).get(coordinates.x).setTile(piece);
     }
 
+    /**
+     * @param piece The piece being added to the grid.
+     */
     public void setGrid(Piece piece) {
         setGrid(piece.getCoordinates(), piece);
     }
 
-    public void setGrid(Coordinates coordinates) {
+    /**
+     * @param coordinates The coordinates where a new piece will be placed.
+     */
+    public void setGrid(@NotNull Coordinates coordinates) {
         grid.get(coordinates.y).get(coordinates.x).setTile(new Piece());
     }
 
-    public Tile getGrid(Coordinates coordinates) {
+    public Tile getGrid(@NotNull Coordinates coordinates) {
         return grid.get(coordinates.y).get(coordinates.x);
     }
 
-    public void addPieces(ArrayList<Piece> pieces) {
+    public void addPieces(@NotNull ArrayList<Piece> pieces) {
         for (Piece p : pieces) this.setGrid(p);
     }
 
@@ -59,6 +73,10 @@ public class Land {
         }
     }
 
+    /**
+     * @param players  Players to be added to the land
+     * @param lootList The list of loot to be added to the land
+     */
     public void update(ArrayList<Piece> players, ArrayList<Piece> lootList) {
         for (int i = 0; i < this.maxRows; i++) {
             for (int j = 0; j < this.maxColumns; j++) {

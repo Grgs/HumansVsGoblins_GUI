@@ -6,11 +6,17 @@ import java.util.Random;
 
 public class Loot extends Piece {
 
+    /**
+     * @param coordinates Initial coordinates of the loot.
+     */
     public Loot(Coordinates coordinates) {
         super(coordinates);
         this.shape = " +";
     }
 
+    /**
+     * @return a random list of loot.
+     */
     public static ArrayList<Piece> getLootList() {
         Random random = new Random();
         int numberOfLoot = Math.max(MaxCoordinates.maxCols, MaxCoordinates.maxRows);

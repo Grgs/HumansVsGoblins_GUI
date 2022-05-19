@@ -1,13 +1,33 @@
 package genspark.humansvsgoblins;
 
+/**
+ * Piece represents a piece that can be added to Land. This can be playable or non-playable
+ * characters, or pieces of loot.
+ */
 public class Piece {
-    /*Piece represents a piece that can be added to Land. This can be playable or non-playable
-     * characters, or pieces of loot.*/
+    /**
+     * The amount of attack dealt by the player.
+     */
     public int attack;
+    /**
+     * The amount of health that the player has.
+     */
     public int health;
+    /**
+     * A defence threshold that must be exceeded before the player gets damaged.
+     */
     public int defence;
+    /**
+     * A string representing the player on the land. Can change based on the state of the player.
+     */
     public String shape;
+    /**
+     * A string representing the player in a neutral phase on the land.
+     */
     public String defaultShape;
+    /**
+     * Coordinates of the player describing where the player is on the land.
+     */
     Coordinates coordinates;
 
 
@@ -17,6 +37,9 @@ public class Piece {
         this.defaultShape = " ";
     }
 
+    /**
+     * Create a piece in the top left corner of the land.
+     */
     public Piece() {
         this(new Coordinates(0, 0));
     }
