@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -73,15 +72,15 @@ public class Main extends Application {
     }
 
     /**
-     * @param human  The human player.
-     * @param goblin The Goblin player.
+     * @param players human and goblin players
      */
-    private void combat(Human human, Goblin goblin) {
-        human = goblin.combat(human, Float.parseFloat((String) properties.get("combatRandomness")));
-        Loot lootDrop = new Loot(new Coordinates(goblin.getCoordinates()));
+    private void combat(Players players) {
+        players.human = players.goblin.combat(players.human, Float.parseFloat(
+                (String) properties.get("combatRandomness")));
+        Loot lootDrop = new Loot(new Coordinates(players.goblin.getCoordinates()));
         int n = 0;
-        while ((lootDrop.getCoordinates().equals(human.getCoordinates()) ||
-                lootDrop.getCoordinates().equals(goblin.getCoordinates())) &&
+        while ((lootDrop.getCoordinates().equals(players.human.getCoordinates()) ||
+                lootDrop.getCoordinates().equals(players.goblin.getCoordinates())) &&
                 n < 3) {
             lootDrop.moveEast();
             n++;
@@ -93,14 +92,13 @@ public class Main extends Application {
     /**
      * Removes the whoever loses from the land.
      *
-     * @param goblin Goblin player
-     * @param human  Human player
+     * @param players Human and Goblin players
      */
-    private void removeLosingPlayer(Goblin goblin, Human human) {
+    private void removeLosingPlayer(Players players) {
         if (gameState.equals(GameState.WON)) {
-            goblin.shape = "  ";
+            players.goblin.shape = "  ";
         } else if (gameState.equals(GameState.LOST)) {
-            human.shape = "  ";
+            players.human.shape = "  ";
         }
     }
 
@@ -110,21 +108,21 @@ public class Main extends Application {
         this.properties = getProperties();
         MaxCoordinates.maxCols = Integer.parseInt((String) properties.get("maxCols"));
         MaxCoordinates.maxRows = Integer.parseInt((String) properties.get("maxRows"));
-        AtomicInteger turnsLeft = new AtomicInteger(Integer.parseInt((String) properties.get("maxTurns")));
+        AtomicInteger turnsRemaining = new AtomicInteger(Integer.parseInt((String) properties.get("maxTurns")));
 
         this.land = new Land();
-        Goblin goblin = new Goblin(new Coordinates(0, 0), properties);
-        Human human = new Human(new Coordinates(MaxCoordinates.maxCols / 2,
-                MaxCoordinates.maxRows / 2), properties);
+        Players players = new Players(
+                new Human(new Coordinates(MaxCoordinates.maxCols / 2, MaxCoordinates.maxRows / 2), properties),
+                new Goblin(new Coordinates(0, 0), properties));
         lootList = Loot.getLootList();
         gameState = GameState.PLAYING;
 
         ((Label) scene.lookup("#topLabel")).setText(
-                String.format("Humans\tVs\tGoblins%n%s\t\tVs\t%s%n", human, goblin));
+                String.format("Humans\tVs\tGoblins%n%s\t\tVs\t%s%n", players.getHuman(), players.getGoblin()));
         Label bottomLabel = (Label) scene.lookup("#bottomLabel");
         bottomLabel.setText("type 'q' to quit or%n\" +\n" +
                 "type 'w', 'a', 's' or 'd' to move up, left, down or right");
-        land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
+        land.update(players, lootList);
 
         GridPane gridPane = (GridPane) scene.lookup("#landGrid");
         land.setInitialLand(gridPane);
@@ -132,23 +130,23 @@ public class Main extends Application {
 
         scene.setOnKeyPressed((KeyEvent key) -> {
             if (gameState == GameState.PLAYING) {
-                human.move(key.getCode().toString().toLowerCase(Locale.ROOT));
-                if (land.getGrid(human.getCoordinates()).piece != null) {
-                    lootList = human.absorbLoot(lootList);
+                players.human.move(key.getCode().toString().toLowerCase(Locale.ROOT));
+                if (land.getGrid(players.getHuman()).piece != null) {
+                    lootList = players.human.absorbLoot(lootList);
                 }
-                goblin.move(human, turnsLeft.get());
-                if (human.getCoordinates().collidesWith(goblin.getCoordinates())) {
-                    combat(human, goblin);
+                players.goblin.move(players.human, turnsRemaining.get());
+                if (players.human.getCoordinates().collidesWith(players.goblin.getCoordinates())) {
+                    combat(players);
                 }
-                goblin.deStackPlayers(human);
+                players.goblin.deStackPlayers(players.human);
 
-                gameState = GameState.determineGameState(turnsLeft.get(), goblin, human, gameState);
-                removeLosingPlayer(goblin, human);
-                this.land.update(new ArrayList<>(List.of(new Player[]{human, goblin})), lootList);
+                gameState = GameState.determineGameState(players, turnsRemaining.get(), gameState);
+                removeLosingPlayer(players);
+                this.land.update(players, lootList);
                 System.out.println(this.land);
-                turnsLeft.getAndDecrement();
+                turnsRemaining.getAndDecrement();
             }
-            bottomLabel.setText(gameState.getStatusText(gameState, turnsLeft.get(), human, goblin));
+            bottomLabel.setText(gameState.getStatusText(players, turnsRemaining.get(), gameState));
             if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
                 System.exit(0);
         });

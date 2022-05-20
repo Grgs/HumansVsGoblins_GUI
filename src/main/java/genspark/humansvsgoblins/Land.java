@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.AbstractCollection;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Land {
@@ -57,6 +58,13 @@ public class Land {
     }
 
     /**
+     * @return tile
+     */
+    public Tile getGrid(Piece piece) {
+        return getGrid(piece.getCoordinates());
+    }
+
+    /**
      * @param coordinates coordinates of the tile to be retrieved
      * @return tile
      */
@@ -66,6 +74,7 @@ public class Land {
 
     /**
      * Add pieces to the land.
+     *
      * @param pieces Pieces to add to the land.
      */
     public void addPieces(@NotNull ArrayList<Piece> pieces) {
@@ -83,6 +92,17 @@ public class Land {
 
     /**
      * Redraw the land with players and loot from the input lists.
+     *
+     * @param players  Players to be added to the land
+     * @param lootList The list of loot to be added to the land
+     */
+    public void update(Players players, ArrayList<Piece> lootList) {
+        update(new ArrayList<>(List.of(new Player[]{players.getHuman(), players.getGoblin()})), lootList);
+    }
+
+    /**
+     * Redraw the land with players and loot from the input lists.
+     *
      * @param players  Players to be added to the land
      * @param lootList The list of loot to be added to the land
      */

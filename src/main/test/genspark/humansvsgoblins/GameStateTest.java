@@ -37,15 +37,19 @@ class GameStateTest {
         GameState gameState = GameState.PLAYING;
         human.setHealth(10);
         goblin.setHealth(10);
-        assertEquals(GameState.PLAYING, GameState.determineGameState(10, goblin, human, gameState));
+        assertEquals(GameState.PLAYING, GameState.determineGameState(new Players(human, goblin),
+                10, gameState));
         human.setHealth(-10);
-        assertEquals(GameState.LOST, GameState.determineGameState(10, goblin, human, gameState));
+        assertEquals(GameState.LOST, GameState.determineGameState(new Players(human, goblin),
+                10, gameState));
         gameState = GameState.PLAYING;
         human.setHealth(10);
-        assertEquals(GameState.DRAW, GameState.determineGameState(0, goblin, human, gameState));
+        assertEquals(GameState.DRAW, GameState.determineGameState(new Players(human, goblin),
+                0, gameState));
         gameState = GameState.PLAYING;
         human.setHealth(10);
         goblin.setHealth(-10);
-        assertEquals(GameState.WON, GameState.determineGameState(10, goblin, human, gameState));
+        assertEquals(GameState.WON, GameState.determineGameState(new Players(human, goblin),
+                10, gameState));
     }
 }

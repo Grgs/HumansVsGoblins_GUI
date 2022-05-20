@@ -46,10 +46,10 @@ public class Goblin extends Player {
     }
 
     /**
-     * @param human   The human player.
-     * @param maxTurn The maximum number of turns until the game ends.
+     * @param human          The human player.
+     * @param turnsRemaining The maximum number of turns until the game ends.
      */
-    public void move(Human human, int maxTurn) {
+    public void move(Human human, int turnsRemaining) {
         int xDiff;
         int yDiff;
         do {
@@ -79,7 +79,7 @@ public class Goblin extends Player {
                     this.moveNorth();
                 }
             }
-        } while (Math.max(Math.abs(xDiff), Math.abs(yDiff)) > Math.max(maxTurn, 2));
+        } while (Math.max(Math.abs(xDiff), Math.abs(yDiff)) > Math.max(turnsRemaining, 2));
     }
 
     /**
