@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Playing surface where player and loot are to be displayed. Game map.
+ */
 public class Land {
     final int maxColumns;
     final int maxRows;
@@ -21,6 +24,8 @@ public class Land {
     }
 
     /**
+     * Create an empty grid of tiles. The size of the gird is determined by maxRows and maxCols.
+     *
      * @return a grid with empty tiles
      */
     public ArrayList<ArrayList<Tile>> emptyGrid() {
@@ -36,6 +41,8 @@ public class Land {
     }
 
     /**
+     * Put a piece at the given coordinates.
+     *
      * @param coordinates coordinates of the piece being added to the grid
      * @param piece       The piece being added to the grid
      */
@@ -44,6 +51,8 @@ public class Land {
     }
 
     /**
+     * Put the piece on land.
+     *
      * @param piece The piece being added to the grid.
      */
     public void setGrid(Piece piece) {
@@ -51,6 +60,8 @@ public class Land {
     }
 
     /**
+     * Create an empty tile at the coordinates.
+     *
      * @param coordinates The coordinates where a new piece will be placed.
      */
     public void setGrid(@NotNull Coordinates coordinates) {
@@ -58,6 +69,8 @@ public class Land {
     }
 
     /**
+     * Get the tile at the coordinates of the piece.
+     *
      * @return tile
      */
     public Tile getGrid(Piece piece) {

@@ -1,5 +1,8 @@
 package genspark.humansvsgoblins;
 
+/**
+ * State of the game.
+ */
 public enum GameState {
     PLAYING, WON, LOST, DRAW;
 

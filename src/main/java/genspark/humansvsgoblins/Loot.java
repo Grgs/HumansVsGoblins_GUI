@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.PrimitiveIterator;
 import java.util.Random;
 
+/**
+ * A list of loot available on the land.
+ */
 public class Loot extends Piece {
 
     /**

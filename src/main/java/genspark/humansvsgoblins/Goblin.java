@@ -3,6 +3,9 @@ package genspark.humansvsgoblins;
 import java.util.Properties;
 import java.util.Random;
 
+/**
+ * Goblin player
+ */
 public class Goblin extends Player {
     final Random random;
 

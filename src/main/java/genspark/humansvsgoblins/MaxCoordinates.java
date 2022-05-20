@@ -4,6 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Delineates the size of the maximum number of rows and columns available on land. The size of Land.
+ */
 public class MaxCoordinates {
     /**
      * maximum number of land rows.
