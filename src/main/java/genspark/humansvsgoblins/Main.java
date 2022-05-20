@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class Main extends Application {
     /**
      * @param players human and goblin players
      */
-    private void combat(Players players) {
+    private void combat(@NotNull Players players) {
         players.human = players.goblin.combat(players.human, Float.parseFloat(
                 (String) properties.get("combatRandomness")));
         Loot lootDrop = new Loot(new Coordinates(players.goblin.getCoordinates()));
