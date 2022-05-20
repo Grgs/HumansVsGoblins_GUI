@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -58,7 +57,6 @@ public class Main extends Application {
     /**
      * @return Main window scene.
      */
-    @NotNull
     private Scene initializeScene() {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
         Scene scene = null;
