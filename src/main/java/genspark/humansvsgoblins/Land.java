@@ -56,10 +56,18 @@ public class Land {
         grid.get(coordinates.y).get(coordinates.x).setTile(new Piece());
     }
 
+    /**
+     * @param coordinates coordinates of the tile to be retrieved
+     * @return tile
+     */
     public Tile getGrid(@NotNull Coordinates coordinates) {
         return grid.get(coordinates.y).get(coordinates.x);
     }
 
+    /**
+     * Add pieces to the land.
+     * @param pieces Pieces to add to the land.
+     */
     public void addPieces(@NotNull ArrayList<Piece> pieces) {
         for (Piece p : pieces) this.setGrid(p);
     }
@@ -74,6 +82,7 @@ public class Land {
     }
 
     /**
+     * Redraw the land with players and loot from the input lists.
      * @param players  Players to be added to the land
      * @param lootList The list of loot to be added to the land
      */
