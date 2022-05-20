@@ -90,7 +90,7 @@ public class Main extends Application {
     }
 
     /**
-     * Removes the whoever loses from the land.
+     * Removes whoever loses from the land.
      *
      * @param players Human and Goblin players
      */
