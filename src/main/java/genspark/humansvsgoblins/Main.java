@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -70,24 +69,6 @@ public class Main extends Application {
         return scene;
     }
 
-    /**
-     * @param players human and goblin players
-     */
-    private void combat(@NotNull Players players) {
-        players.human = players.goblin.combat(players.human, Float.parseFloat(
-                (String) properties.get("combatRandomness")));
-        Loot lootDrop = new Loot(new Coordinates(players.goblin.getCoordinates()));
-        int n = 0;
-        while ((lootDrop.getCoordinates().equals(players.human.getCoordinates()) ||
-                lootDrop.getCoordinates().equals(players.goblin.getCoordinates())) &&
-                n < 3) {
-            lootDrop.moveEast();
-            n++;
-        }
-        lootDrop.setDefence(5);
-        lootList.add(lootDrop);
-    }
-
     @Override
     public void start(Stage stage) {
         Scene scene = initializeScene();
@@ -122,7 +103,7 @@ public class Main extends Application {
                 }
                 players.goblin.move(players.human, turnsRemaining.get());
                 if (players.human.getCoordinates().collidesWith(players.goblin.getCoordinates())) {
-                    combat(players);
+                    players.combat(properties, lootList);
                 }
                 players.deStackPlayers();
 

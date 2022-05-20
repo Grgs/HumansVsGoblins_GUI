@@ -1,5 +1,9 @@
 package genspark.humansvsgoblins;
 
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.Random;
+
 /**
  * Goblin and human players.
  */
@@ -35,6 +39,33 @@ public class Players {
         } else if (gameState.equals(GameState.LOST)) {
             human.shape = "  ";
         }
+    }
+
+    /**
+     * @param properties game properties from file
+     * @param lootList   loot list on land
+     */
+    void combat(Properties properties, ArrayList<Piece> lootList) {
+        float randomness = Float.parseFloat((String) properties.get("combatRandomness"));
+        Random random = new Random();
+        int oldHumanHealth = human.getHealth();
+        int oldGoblinHealth = goblin.getHealth();
+        human.setHealth(oldHumanHealth + Math.min(-goblin.getAttack() -
+                (int) (randomness * random.nextGaussian()) + human.getDefence(), 0));
+        goblin.setHealth(oldGoblinHealth + Math.min(-human.getAttack() -
+                (int) (randomness * random.nextGaussian()) + goblin.getDefence(), 0));
+        System.out.printf("%s health has been reduced by %d%n%s health has been reduced by %d%n",
+                human, oldHumanHealth - human.getHealth(), goblin, oldGoblinHealth - goblin.getHealth());
+        Loot lootDrop = new Loot(new Coordinates(goblin.getCoordinates()));
+        int n = 0;
+        while ((lootDrop.getCoordinates().equals(human.getCoordinates()) ||
+                lootDrop.getCoordinates().equals(goblin.getCoordinates())) &&
+                n < 3) {
+            lootDrop.moveEast();
+            n++;
+        }
+        lootDrop.setDefence(5);
+        lootList.add(lootDrop);
     }
 
     public Human getHuman() {

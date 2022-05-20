@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GoblinTest {
@@ -31,16 +30,6 @@ class GoblinTest {
         MaxCoordinates.maxRows = 40;
         human = new Human(new Coordinates(1, 1));
         goblin = new Goblin(new Coordinates(0, 0));
-    }
-
-    @Test
-    void combat() {
-        assertDoesNotThrow(() -> goblin.combat(human, 1.5F));
-        goblin.setAttack(10);
-        human.setAttack(10);
-        int initialHumanHealth = human.getHealth();
-        human = goblin.combat(human, 0F);
-        assertTrue(initialHumanHealth > human.getHealth());
     }
 
     @Test
