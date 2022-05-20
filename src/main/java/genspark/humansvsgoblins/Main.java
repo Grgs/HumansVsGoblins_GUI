@@ -88,19 +88,6 @@ public class Main extends Application {
         lootList.add(lootDrop);
     }
 
-    /**
-     * Removes whoever loses from the land.
-     *
-     * @param players Human and Goblin players
-     */
-    private void removeLosingPlayer(Players players) {
-        if (gameState.equals(GameState.WON)) {
-            players.goblin.shape = "  ";
-        } else if (gameState.equals(GameState.LOST)) {
-            players.human.shape = "  ";
-        }
-    }
-
     @Override
     public void start(Stage stage) {
         Scene scene = initializeScene();
@@ -137,10 +124,10 @@ public class Main extends Application {
                 if (players.human.getCoordinates().collidesWith(players.goblin.getCoordinates())) {
                     combat(players);
                 }
-                players.goblin.deStackPlayers(players.human);
+                players.deStackPlayers();
 
                 gameState = GameState.determineGameState(players, turnsRemaining.get(), gameState);
-                removeLosingPlayer(players);
+                players.removeLosingPlayer(gameState);
                 this.land.update(players, lootList);
                 System.out.println(this.land);
                 turnsRemaining.getAndDecrement();

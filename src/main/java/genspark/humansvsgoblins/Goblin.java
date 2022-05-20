@@ -84,14 +84,4 @@ public class Goblin extends Player {
             }
         } while (Math.max(Math.abs(xDiff), Math.abs(yDiff)) > Math.max(turnsRemaining, 2));
     }
-
-    /**
-     * If the goblin and human are on top of each other, then move them apart.
-     *
-     * @param human The Human player.
-     */
-    public void deStackPlayers(Human human) {
-        if (human.getCoordinates().equals(this.getCoordinates()))
-            moveEast();
-    }
 }

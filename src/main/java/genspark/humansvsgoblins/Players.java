@@ -16,6 +16,27 @@ public class Players {
         this.goblin = goblin;
     }
 
+    /**
+     * If the goblin and human are on top of each other, then move them apart.
+     */
+    public void deStackPlayers() {
+        if (human.getCoordinates().equals(goblin.getCoordinates()))
+            goblin.moveEast();
+    }
+
+    /**
+     * Removes whoever loses from the land.
+     *
+     * @param gameState Current state of the game
+     */
+    void removeLosingPlayer(GameState gameState) {
+        if (gameState.equals(GameState.WON)) {
+            goblin.shape = "  ";
+        } else if (gameState.equals(GameState.LOST)) {
+            human.shape = "  ";
+        }
+    }
+
     public Human getHuman() {
         return human;
     }
