@@ -1,5 +1,9 @@
 package genspark.humansvsgoblins;
 
+import genspark.humansvsgoblins.land.Coordinates;
+import genspark.humansvsgoblins.land.Land;
+import genspark.humansvsgoblins.land.MaxCoordinates;
+import genspark.humansvsgoblins.pieces.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

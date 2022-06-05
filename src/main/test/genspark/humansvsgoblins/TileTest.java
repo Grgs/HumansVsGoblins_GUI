@@ -1,5 +1,7 @@
 package genspark.humansvsgoblins;
 
+import genspark.humansvsgoblins.land.Tile;
+import genspark.humansvsgoblins.pieces.Piece;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

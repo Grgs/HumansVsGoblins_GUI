@@ -1,5 +1,10 @@
 package genspark.humansvsgoblins;
 
+import genspark.humansvsgoblins.land.Coordinates;
+import genspark.humansvsgoblins.land.MaxCoordinates;
+import genspark.humansvsgoblins.pieces.Human;
+import genspark.humansvsgoblins.pieces.Loot;
+import genspark.humansvsgoblins.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

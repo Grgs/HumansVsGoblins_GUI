@@ -1,4 +1,7 @@
-package genspark.humansvsgoblins;
+package genspark.humansvsgoblins.pieces;
+
+import genspark.humansvsgoblins.GameState;
+import genspark.humansvsgoblins.land.Coordinates;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -8,8 +11,14 @@ import java.util.Random;
  * Goblin and human players.
  */
 public class Players {
-    Human human;
-    Goblin goblin;
+    /**
+     * The human player.
+     */
+    public Human human;
+    /**
+     * The goblin player.
+     */
+    public Goblin goblin;
 
     /**
      * Set human and goblin players.
@@ -35,7 +44,7 @@ public class Players {
      *
      * @param gameState Current state of the game
      */
-    void removeLosingPlayer(GameState gameState) {
+    public void removeLosingPlayer(GameState gameState) {
         if (gameState.equals(GameState.WON)) {
             goblin.shape = "  ";
         } else if (gameState.equals(GameState.LOST)) {
@@ -49,7 +58,7 @@ public class Players {
      * @param properties game properties from file
      * @param lootList   loot list on land
      */
-    void combat(Properties properties, ArrayList<Piece> lootList) {
+    public void combat(Properties properties, ArrayList<Piece> lootList) {
         float randomness = Float.parseFloat((String) properties.get("combatRandomness"));
         Random random = new Random();
         int oldHumanHealth = human.getHealth();

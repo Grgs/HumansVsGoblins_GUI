@@ -1,4 +1,6 @@
-package genspark.humansvsgoblins;
+package genspark.humansvsgoblins.pieces;
+
+import genspark.humansvsgoblins.land.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;

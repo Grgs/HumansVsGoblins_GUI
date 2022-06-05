@@ -1,5 +1,8 @@
-package genspark.humansvsgoblins;
+package genspark.humansvsgoblins.land;
 
+import genspark.humansvsgoblins.pieces.Piece;
+import genspark.humansvsgoblins.pieces.Player;
+import genspark.humansvsgoblins.pieces.Players;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import org.jetbrains.annotations.NotNull;

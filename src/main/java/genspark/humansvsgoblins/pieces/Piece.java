@@ -1,4 +1,6 @@
-package genspark.humansvsgoblins;
+package genspark.humansvsgoblins.pieces;
+
+import genspark.humansvsgoblins.land.Coordinates;
 
 /**
  * Piece represents a piece that can be added to Land. This can be playable or non-playable
@@ -28,7 +30,7 @@ public class Piece {
     /**
      * Coordinates of the player describing where the player is on the land.
      */
-    Coordinates coordinates;
+    public Coordinates coordinates;
 
 
     /**

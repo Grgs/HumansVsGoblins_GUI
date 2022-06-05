@@ -1,5 +1,6 @@
-package genspark.humansvsgoblins;
+package genspark.humansvsgoblins.land;
 
+import genspark.humansvsgoblins.pieces.Piece;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;

@@ -1,4 +1,7 @@
-package genspark.humansvsgoblins;
+package genspark.humansvsgoblins.pieces;
+
+import genspark.humansvsgoblins.land.Coordinates;
+import genspark.humansvsgoblins.land.MaxCoordinates;
 
 import java.util.ArrayList;
 import java.util.PrimitiveIterator;

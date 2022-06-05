@@ -1,4 +1,4 @@
-package genspark.humansvsgoblins;
+package genspark.humansvsgoblins.land;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -10,12 +10,12 @@ public class Coordinates {
     /**
      * Maximum number of rows or y values.
      */
-    final int maxY;
+    final public int maxY;
     /**
      * Maximum number of columns or x values.
      */
-    final int maxX;
-    int y, x;
+    final public int maxX;
+    public int y, x;
 
     public Coordinates(int x, int y) {
         this.maxX = MaxCoordinates.maxCols;

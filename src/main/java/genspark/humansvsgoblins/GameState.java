@@ -1,5 +1,7 @@
 package genspark.humansvsgoblins;
 
+import genspark.humansvsgoblins.pieces.Players;
+
 /**
  * State of the game.
  */
