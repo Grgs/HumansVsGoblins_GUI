@@ -12,6 +12,8 @@ public class Players {
     Goblin goblin;
 
     /**
+     * Set human and goblin players.
+     *
      * @param human  The human player
      * @param goblin The goblin player
      */
@@ -42,6 +44,8 @@ public class Players {
     }
 
     /**
+     * Initiates the battle between a human and a goblin.
+     *
      * @param properties game properties from file
      * @param lootList   loot list on land
      */
@@ -68,10 +72,20 @@ public class Players {
         lootList.add(lootDrop);
     }
 
+    /**
+     * Get the human player.
+     *
+     * @return The human player
+     */
     public Human getHuman() {
         return human;
     }
 
+    /**
+     * Get the goblin player.
+     *
+     * @return The goblin player
+     */
     public Goblin getGoblin() {
         return goblin;
     }

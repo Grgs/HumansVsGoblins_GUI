@@ -8,11 +8,11 @@ import org.jetbrains.annotations.NotNull;
  */
 public class Coordinates {
     /**
-     * Maximum number of rows.
+     * Maximum number of rows or y values.
      */
     final int maxY;
     /**
-     * Maximum number of columns.
+     * Maximum number of columns or x values.
      */
     final int maxX;
     int y, x;

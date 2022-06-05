@@ -13,8 +13,17 @@ import java.util.stream.Collectors;
  * Playing surface where player and loot are to be displayed. Game map.
  */
 public class Land {
+    /**
+     * Number of columns in the game map.
+     */
     final int maxColumns;
+    /**
+     * Number of rows in the game map.
+     */
     final int maxRows;
+    /**
+     * A grid of cells in the game map.
+     */
     public ArrayList<ArrayList<Tile>> grid;
 
     public Land() {
@@ -71,6 +80,7 @@ public class Land {
     /**
      * Get the tile at the coordinates of the piece.
      *
+     * @param piece The piece with the coordinates of the tile.
      * @return tile
      */
     public Tile getGrid(Piece piece) {
@@ -78,6 +88,8 @@ public class Land {
     }
 
     /**
+     * Get the tile at the coordinates of the piece.
+     *
      * @param coordinates coordinates of the tile to be retrieved
      * @return tile
      */
@@ -94,6 +106,11 @@ public class Land {
         for (Piece p : pieces) this.setGrid(p);
     }
 
+    /**
+     * Creates a GridPane with the size of the land.
+     *
+     * @param gridPane a grid pane to be populated with tiles
+     */
     public void setInitialLand(GridPane gridPane) {
         for (int i = 0; i < MaxCoordinates.maxCols; i++) {
             gridPane.getColumnConstraints().add(new ColumnConstraints(20));
@@ -129,6 +146,11 @@ public class Land {
         addPieces(players);
     }
 
+    /**
+     * Get a String representation of the land.
+     *
+     * @return String representation of the land.
+     */
     @Override
     public String toString() {
         return grid.stream().map(AbstractCollection::toString).

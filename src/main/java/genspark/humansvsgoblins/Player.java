@@ -12,6 +12,8 @@ public class Player extends Piece {
     ArrayList<Loot> inventory;
 
     /**
+     * Create a player.
+     *
      * @param coordinates Initial coordinates of the player on the land.
      */
     public Player(Coordinates coordinates) {
@@ -27,6 +29,11 @@ public class Player extends Piece {
         inventory = new ArrayList<>();
     }
 
+    /**
+     * Get the inventory of the player.
+     *
+     * @return List of loot collected by the player.
+     */
     public ArrayList<Loot> getInventory() {
         return inventory;
     }

@@ -10,6 +10,8 @@ import java.util.Random;
 public class Loot extends Piece {
 
     /**
+     * Create a piece of loot.
+     *
      * @param coordinates Initial coordinates of the loot.
      */
     public Loot(Coordinates coordinates) {
@@ -18,6 +20,8 @@ public class Loot extends Piece {
     }
 
     /**
+     * Generate a random list of loot.
+     *
      * @return a random list of loot.
      */
     public static ArrayList<Piece> getLootList() {

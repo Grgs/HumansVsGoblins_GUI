@@ -14,6 +14,12 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * <h1>Humans vs Goblins</h1>
+ * Humans vs Goblins is a game where a human attempts to defeat a goblin.
+ *
+ * @author Michael Guirguis
+ */
 public class Main extends Application {
     /**
      * Game properties stored in a file.
@@ -32,11 +38,18 @@ public class Main extends Application {
      */
     ArrayList<Piece> lootList;
 
+    /**
+     * Start the game.
+     *
+     * @param args unused
+     */
     public static void main(String[] args) {
         launch();
     }
 
     /**
+     * Get the game properties from a file.
+     *
      * @return Game properties from file.
      */
     private static Properties getProperties() {
@@ -55,6 +68,8 @@ public class Main extends Application {
     }
 
     /**
+     * Initialize the JavaFx scene.
+     *
      * @return Main window scene.
      */
     private Scene initializeScene() {
@@ -69,6 +84,44 @@ public class Main extends Application {
         return scene;
     }
 
+    /**
+     * Main game loop that runs when keys are pressed.
+     *
+     * @param scene          JavaFx scene.
+     * @param turnsRemaining Number of turns remaining.
+     * @param players        Players on the land.
+     * @param bottomLabel    Label displaying game information at the bottom of the screen.
+     */
+    private void gameLoop(Scene scene, AtomicInteger turnsRemaining, Players players, Label bottomLabel) {
+        scene.setOnKeyPressed((KeyEvent key) -> {
+            if (gameState == GameState.PLAYING) {
+                players.human.move(key.getCode().toString().toLowerCase(Locale.ROOT));
+                if (land.getGrid(players.getHuman()).piece != null) {
+                    lootList = players.human.absorbLoot(lootList);
+                }
+                players.goblin.move(players.human, turnsRemaining.get());
+                if (players.human.getCoordinates().collidesWith(players.goblin.getCoordinates())) {
+                    players.combat(properties, lootList);
+                }
+                players.deStackPlayers();
+
+                gameState = GameState.determineGameState(players, turnsRemaining.get(), gameState);
+                players.removeLosingPlayer(gameState);
+                this.land.update(players, lootList);
+                System.out.println(this.land);
+                turnsRemaining.getAndDecrement();
+            }
+            bottomLabel.setText(gameState.getStatusText(players, turnsRemaining.get(), gameState));
+            if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
+                System.exit(0);
+        });
+    }
+
+    /**
+     * Initialize and run the game.
+     *
+     * @param stage JavaFx stage
+     */
     @Override
     public void start(Stage stage) {
         Scene scene = initializeScene();
@@ -95,28 +148,7 @@ public class Main extends Application {
         land.setInitialLand(gridPane);
         stage.setTitle("Humans Vs. Goblins");
 
-        scene.setOnKeyPressed((KeyEvent key) -> {
-            if (gameState == GameState.PLAYING) {
-                players.human.move(key.getCode().toString().toLowerCase(Locale.ROOT));
-                if (land.getGrid(players.getHuman()).piece != null) {
-                    lootList = players.human.absorbLoot(lootList);
-                }
-                players.goblin.move(players.human, turnsRemaining.get());
-                if (players.human.getCoordinates().collidesWith(players.goblin.getCoordinates())) {
-                    players.combat(properties, lootList);
-                }
-                players.deStackPlayers();
-
-                gameState = GameState.determineGameState(players, turnsRemaining.get(), gameState);
-                players.removeLosingPlayer(gameState);
-                this.land.update(players, lootList);
-                System.out.println(this.land);
-                turnsRemaining.getAndDecrement();
-            }
-            bottomLabel.setText(gameState.getStatusText(players, turnsRemaining.get(), gameState));
-            if (key.getCode().toString().toLowerCase(Locale.ROOT).equals("q"))
-                System.exit(0);
-        });
+        gameLoop(scene, turnsRemaining, players, bottomLabel);
         stage.setScene(scene);
         stage.show();
     }

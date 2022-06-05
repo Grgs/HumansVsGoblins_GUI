@@ -9,16 +9,16 @@ import java.util.Properties;
  */
 public class MaxCoordinates {
     /**
-     * maximum number of land rows.
+     * Maximum number of rows or y values on land.
      */
     public static int maxRows;
     /**
-     * maximum number of land columns.
+     * Maximum number of columns or x values on land.
      */
     public static int maxCols;
 
     /**
-     * get maxRows and maxCols from the game properties file.
+     * Set maxRows and maxCols from the game properties file.
      */
     public static void getProperties() {
         try (FileReader fileReader = new FileReader("game.properties")) {

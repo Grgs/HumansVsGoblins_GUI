@@ -10,6 +10,8 @@ public class Goblin extends Player {
     final Random random;
 
     /**
+     * Create a goblin player at the given coordinates.
+     *
      * @param coordinates Starting coordinates of Goblin
      */
     public Goblin(Coordinates coordinates) {
@@ -20,6 +22,8 @@ public class Goblin extends Player {
     }
 
     /**
+     * Create a goblin player at the given coordinates with stats from the given properties.
+     *
      * @param coordinates Starting coordinates of Goblin
      * @param properties  Initial game properties to get initial health and attack values
      */
@@ -30,6 +34,8 @@ public class Goblin extends Player {
     }
 
     /**
+     * Performs combat with the human player.
+     *
      * @param human      Human player
      * @param randomness The amount of randomness in attack values. The higher the number the more
      *                   variation between player attack and actual attack inflicted. 0 means no randomness.
@@ -49,6 +55,8 @@ public class Goblin extends Player {
     }
 
     /**
+     * Moves the goblin to pursue the human player.
+     *
      * @param human          The human player.
      * @param turnsRemaining The maximum number of turns until the game ends.
      */

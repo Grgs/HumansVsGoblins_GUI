@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class Human extends Player {
 
     /**
+     * Create a human player with the given coordinates.
+     *
      * @param coordinates Starting coordinates of the player.
      */
     public Human(Coordinates coordinates) {
@@ -20,6 +22,8 @@ public class Human extends Player {
     }
 
     /**
+     * Create a human player with the given coordinates and stats from the given properties.
+     *
      * @param coordinates Starting coordinates of the player
      * @param properties  Initial game properties to get initial health and attack values
      */
@@ -30,6 +34,8 @@ public class Human extends Player {
     }
 
     /**
+     * Moves the human player according to the key pressed.
+     *
      * @param key Keyboard code indicating player movement.
      */
     public void move(String key) {
